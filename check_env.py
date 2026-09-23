@@ -1,5 +1,6 @@
-"""Environment sanity check for PrivFedXAI (Day 1)."""
+"""Environment sanity check for PrivFedXAI."""
 import sys
+from importlib.metadata import version
 
 import matplotlib
 import numpy
@@ -11,6 +12,10 @@ import wfdb
 print(f"Python       {sys.version.split()[0]}")
 for mod in (numpy, pandas, sklearn, wfdb, matplotlib, torch):
     print(f"{mod.__name__:12s} {mod.__version__}")
+
+# Day 2 packages: report installed versions
+for pkg in ("opacus", "shap", "streamlit", "flwr"):
+    print(f"{pkg:12s} {version(pkg)}")
 
 # Pick the best available device
 if torch.cuda.is_available():
