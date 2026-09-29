@@ -2,6 +2,9 @@
 data/raw/
 data/processed/
 
+# Local waveform plots (derived from PTB-XL records)
+results/eda/waveforms/
+
 # Model weights and large outputs
 *.pt
 *.pth
