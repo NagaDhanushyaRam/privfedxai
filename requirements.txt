@@ -13,3 +13,5 @@ opacus==1.6.0
 shap==0.51.0
 streamlit==1.64.0
 flwr[simulation]==1.38.0
+scipy==1.17.1
+pytest==9.1.1
