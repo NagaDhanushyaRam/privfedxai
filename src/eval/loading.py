@@ -9,8 +9,11 @@ RESULTS = Path("results/baselines")
 # model -> (file, score-key prefix, threshold per D27 / D43)
 MODELS = {
     "lr": ("lr_probs.npz", "P", 0.5),
+    "lr_smote": ("lr_smote_probs.npz", "P", 0.5),
     "svm": ("svm_scores.npz", "S", 0.0),
+    "svm_smote": ("svm_smote_scores.npz", "S", 0.0),
     "rf": ("rf_probs.npz", "P", 0.5),
+    "rf_smote": ("rf_smote_probs.npz", "P", 0.5),
 }
 
 
