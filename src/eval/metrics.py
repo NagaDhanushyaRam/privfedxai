@@ -24,3 +24,7 @@ def per_class_f1_mcc(Y, S, thr):
     mcc = np.array([matthews_corrcoef(Y[:, k], pred[:, k])
                     for k in range(Y.shape[1])])
     return f1, mcc
+
+def predicted_positive_rate(S, thr):
+    """Share of records predicted positive per column (strict score > thr, D44)."""
+    return (S > thr).mean(axis=0)

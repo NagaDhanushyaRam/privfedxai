@@ -14,7 +14,7 @@ KEYS = ["client", "metric", "label"]
 
 def main():
     parts = []
-    for model in MODELS:
+    for model in [m for m in MODELS if m != "cnn"]:
         point = evaluate(model, SPLIT)
         ci = summarize(bootstrap(model, SPLIT, n_boot=1000, seed=0))
         parts.append(point.merge(ci, on=KEYS, how="left"))

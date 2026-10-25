@@ -14,6 +14,7 @@ MODELS = {
     "svm_smote": ("svm_smote_scores.npz", "S", 0.0),
     "rf": ("rf_probs.npz", "P", 0.5),
     "rf_smote": ("rf_smote_probs.npz", "P", 0.5),
+    "cnn": ("../cnn/cnn_val_probs.npz", "P", 0.5),
 }
 
 
