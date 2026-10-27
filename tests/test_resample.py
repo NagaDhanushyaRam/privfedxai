@@ -3,8 +3,6 @@ from src.data.resample import smote_per_site
 
 
 def make_two_sites(seed=0):
-    """Site A: 100 rows, 20 positive. Site B: 60 rows, 12 positive.
-    B is shifted by +100 so any cross-site mixing would be obvious."""
     rng = np.random.default_rng(seed)
     XA = rng.normal(0, 1, (100, 4))
     XB = rng.normal(100, 1, (60, 4))
@@ -42,5 +40,4 @@ def test_original_rows_are_kept_first():
 def test_no_cross_site_mixing():
     X, y, client = make_two_sites()
     X_aug, _ = smote_per_site(X, y, client)
-    # a row interpolated between site A (~0) and site B (~100) would land in the gap
     assert ((X_aug[:, 0] > 10) & (X_aug[:, 0] < 90)).sum() == 0

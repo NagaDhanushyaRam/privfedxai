@@ -6,17 +6,17 @@ import pytest
 
 def test_filter_acts_on_time_axis_only():
     x = np.zeros((1000, 12))
-    x[500, 0] = 1.0                      # a spike in lead 0 only
+    x[500, 0] = 1.0                      
     y = pp.bandpass(x)
-    assert np.abs(y[:, 1:]).max() == 0.0 # other leads must stay untouched
-    assert np.abs(y[:, 0]).max() > 0.0   # lead 0 must be filtered
+    assert np.abs(y[:, 1:]).max() == 0.0 
+    assert np.abs(y[:, 0]).max() > 0.0   
     
 def _fake_meta():
     folds = [1, 2, 8, 9, 10, 5, 9, 10]
     return pd.DataFrame({
         "strat_fold": folds,
         "filename_lr": [f"rec{i}" for i in range(len(folds))],
-        "superclasses": [["NORM"]] * 5 + [[]] + [["MI"]] * 2,  # rec5 (fold 5) is unlabeled
+        "superclasses": [["NORM"]] * 5 + [[]] + [["MI"]] * 2,  
     })
 
 
@@ -46,19 +46,19 @@ def test_preprocess_is_deterministic_float32(monkeypatch):
     a = pp.preprocess_record("r", "x")
     b = pp.preprocess_record("r", "x")
     assert a.dtype == np.float32 and a.shape == (1000, 12)
-    assert np.array_equal(a, b)                      # no hidden state: same input, same output
+    assert np.array_equal(a, b)                      
     assert np.allclose(a, pp.bandpass(raw) / pp.SCALE_MV, atol=1e-5)
     
 def test_scan_reports_bad_records(monkeypatch):
     def fake_read(root, fn):
         if fn == "b":
-            return np.full((1000, 12), np.nan)     # NaN record
+            return np.full((1000, 12), np.nan)     
         if fn == "c":
-            return np.zeros((999, 12))             # wrong length
+            return np.zeros((999, 12))             
         return np.zeros((1000, 12))
 
     monkeypatch.setattr(pp, "read_raw", fake_read)
     meta = pd.DataFrame({"filename_lr": ["a", "b", "c"]}, index=[10, 11, 12])
     res = pp.scan_all(meta, "unused")
-    assert [i for i, _ in res["bad"]] == [11, 12]  # both flagged, by ecg_id
+    assert [i for i, _ in res["bad"]] == [11, 12]  
     assert res["n"] == 3
