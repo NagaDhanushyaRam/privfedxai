@@ -1,7 +1,4 @@
-"""SVM baseline: RBF SVC, one binary model per class, pooled training set.
-
-Threshold rule (D43): positive if decision score > 0. Saves SCORES, not probabilities.
-"""
+"""SVM baseline: RBF SVC, one binary model per class, pooled training set."""
 import time
 from pathlib import Path
 

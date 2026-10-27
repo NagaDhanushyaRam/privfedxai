@@ -21,6 +21,6 @@ class ECGCNN(nn.Module):
         )
         self.head = nn.Linear(128, n_classes)
 
-    def forward(self, x):                       # (B, 12, 1000)
-        f = self.features(x)                    # (B, 128, 125), time axis kept for attention
-        return self.head(f.mean(dim=2))         # (B, 5) raw logits
+    def forward(self, x):                       
+        f = self.features(x)                    
+        return self.head(f.mean(dim=2))       

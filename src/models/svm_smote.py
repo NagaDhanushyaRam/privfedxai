@@ -1,8 +1,4 @@
-"""SVM + per-site SMOTE: one RBF SVC per class, pooled training set.
-
-Scaler is fitted on real train rows only. No class_weight: SMOTE does the balancing.
-Threshold rule (D43): positive if decision score > 0. Saves SCORES, not probabilities.
-"""
+"""SVM + per-site SMOTE: one RBF SVC per class, pooled training set."""
 import time
 from pathlib import Path
 

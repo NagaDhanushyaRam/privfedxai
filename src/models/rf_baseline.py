@@ -1,7 +1,4 @@
-"""Random Forest baseline: one forest per class (one-vs-rest), pooled training set.
-
-No feature scaler: trees are scale-invariant. Threshold rule (D27): fixed 0.5.
-"""
+"""Random Forest baseline: one forest per class (one-vs-rest), pooled training set."""
 import time
 from pathlib import Path
 

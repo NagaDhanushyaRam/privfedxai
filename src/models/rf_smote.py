@@ -1,8 +1,4 @@
-"""Random Forest + per-site SMOTE: one forest per class, pooled training set.
-
-Scaler is fitted on real train rows only: trees don't need it, but SMOTE's
-neighbour search does. Threshold rule (D27): fixed 0.5.
-"""
+"""Random Forest + per-site SMOTE: one forest per class, pooled training set."""
 import time
 from pathlib import Path
 

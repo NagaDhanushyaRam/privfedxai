@@ -13,7 +13,7 @@ EPOCHS, BATCH, LR, SEED = 30, 64, 1e-3, 0
 OUT = "results/cnn"
 
 
-def pos_weight(y):                              # TRAIN labels only, (n,5) float
+def pos_weight(y):                            
     pos = y.sum(0)
     return (len(y) - pos) / pos
 
