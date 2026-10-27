@@ -7,11 +7,6 @@ from src.eval.loading import MODELS, load_split
 
 
 def bootstrap(model, split, n_boot=1000, seed=0):
-    """Long table of replicates: client, rep, metric, label, value.
-
-    Resampling indices depend only on (seed, slice size), so every model
-    evaluated on the same rows gets the same resamples (paired across models).
-    """
     Y, S, client = load_split(model, split)
     thr = MODELS[model][2]
     rows = []
@@ -27,7 +22,6 @@ def bootstrap(model, split, n_boot=1000, seed=0):
 
 
 def summarize(boot):
-    """95% percentile CI and number of valid (non-NaN) replicates per cell."""
     g = boot.groupby(["client", "metric", "label"])["value"]
     return pd.DataFrame({"lo": g.quantile(0.025), "hi": g.quantile(0.975),
                          "n_valid": g.count()}).reset_index()

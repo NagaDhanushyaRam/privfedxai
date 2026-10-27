@@ -11,13 +11,11 @@ LABELS = list(SUPERCLASSES) + ["macro"]
 
 
 def score_slice(Y, S, thr):
-    """Metric name -> (5,) array of per-class values for one slice of records."""
     f1, mcc = per_class_f1_mcc(Y, S, thr)
     return {"auc": per_class_auc(Y, S), "f1": f1, "mcc": mcc}
 
 
 def evaluate(model, split):
-    """Long table: model, client, n, metric, label, value ('macro' = mean over classes)."""
     Y, S, client = load_split(model, split)
     thr = MODELS[model][2]
     rows = []
