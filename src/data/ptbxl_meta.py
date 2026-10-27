@@ -8,8 +8,6 @@ SUPERCLASSES = ["NORM", "MI", "STTC", "CD", "HYP"]
 
 
 def load_metadata(root):
-    """Return ptbxl_database.csv indexed by ecg_id, with parsed scp_codes,
-    a `superclasses` list column, and one 0/1 column per superclass."""
     root = Path(root)
     df = pd.read_csv(root / "ptbxl_database.csv", index_col="ecg_id")
     df["scp_codes"] = df["scp_codes"].apply(ast.literal_eval)

@@ -2,7 +2,7 @@
 from pathlib import Path
 
 import matplotlib
-matplotlib.use("Agg")  # write files only, no GUI window
+matplotlib.use("Agg") 
 import matplotlib.pyplot as plt
 import pandas as pd
 
@@ -41,7 +41,7 @@ def fig_superclass_counts(labeled):
     ax.tick_params(axis="y", length=0)
     fig.text(0.01, 0.01, "Multi-label: one record can carry several classes, so % do not sum to 100.",
              fontsize=8.5, color=MUTED)
-    fig.tight_layout(rect=(0, 0.05, 1, 1))  # leave room for the footnote
+    fig.tight_layout(rect=(0, 0.05, 1, 1))  
     fig.savefig(OUT / "a_superclass_counts.png", dpi=200)
     plt.close(fig)
 
@@ -82,7 +82,7 @@ def fig_site_sizes(df):
 def fig_prevalence_by_site(labeled):
     site = labeled["site"]
     groups = {f"Site {s}": labeled[site == s] for s in CLIENT_SITES}
-    groups["Rest"] = labeled[~site.isin(CLIENT_SITES)]  # sites 4-50 + no-site; NaN is not in isin, so ~ keeps it
+    groups["Rest"] = labeled[~site.isin(CLIENT_SITES)]  
     assert sum(len(g) for g in groups.values()) == len(labeled)  # the 5 clients partition the labeled set
     groups["Overall"] = labeled
 

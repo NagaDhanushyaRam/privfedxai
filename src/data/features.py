@@ -10,13 +10,12 @@ FEATURE_NAMES = [f"{lead}_{s}" for lead in LEADS for s in STATS]   # lead-major,
 
 
 def extract(z):
-    """z: preprocessed (1000, 12) array -> float64 vector of 84 features."""
     z = z.astype(np.float64)
-    spec = np.abs(np.fft.rfft(z, axis=0)) ** 2 / N_SAMPLES     # power per frequency, per lead
+    spec = np.abs(np.fft.rfft(z, axis=0)) ** 2 / N_SAMPLES    
     freqs = np.fft.rfftfreq(N_SAMPLES, d=1 / FS)
     cols = [z.std(axis=0), z.min(axis=0), z.max(axis=0), np.abs(np.diff(z, axis=0)).mean(axis=0)]
     cols += [spec[(freqs >= lo) & (freqs < hi)].sum(axis=0) for lo, hi in BANDS]
-    f = np.stack(cols, axis=1).ravel()                          # (12 leads, 7) -> 84
+    f = np.stack(cols, axis=1).ravel()                     
     if not np.isfinite(f).all():
         raise ValueError("non-finite feature")
     return f

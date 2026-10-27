@@ -1,7 +1,4 @@
-"""PTB-XL metadata EDA: labels, sites, demographics, folds.
-
-Run from the repo root:  python -m src.data.explore_metadata
-"""
+"""PTB-XL metadata EDA: labels, sites, demographics, folds."""
 from pathlib import Path
 
 import pandas as pd

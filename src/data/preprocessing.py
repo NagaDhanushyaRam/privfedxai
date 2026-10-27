@@ -13,7 +13,6 @@ SCALE_MV = 0.209
 
 
 def check(x, tag):
-    """Raise if the array is not (1000, 12) or contains NaN/Inf."""
     if x.shape != (N_SAMPLES, N_LEADS):
         raise ValueError(f"{tag}: shape {x.shape}")
     if not np.isfinite(x).all():
@@ -21,26 +20,22 @@ def check(x, tag):
 
 
 def read_raw(root, filename_lr):
-    """Raw record, float64 (1000, 12), mV. filename_lr has no extension."""
     x = wfdb.rdrecord(str(Path(root) / filename_lr)).p_signal
     check(x, f"raw {filename_lr}")
     return x
 
 
 def bandpass(x):
-    """Zero-phase band-pass along time (axis=0)."""
     return sosfiltfilt(SOS, x, axis=0)
 
 
 def filter_record(root, filename_lr):
-    """Raw -> band-passed, still float64 and in mV (no scaling yet)."""
     y = bandpass(read_raw(root, filename_lr))
     check(y, f"filtered {filename_lr}")
     return y
 
 
 def merge_moments(state, y):
-    """Fold one array into a running (count, mean, M2). Chan's parallel update."""
     n, mean, m2 = state
     y = y.ravel()
     n_b, mean_b = y.size, float(y.mean())
@@ -51,7 +46,6 @@ def merge_moments(state, y):
 
 
 def fit_scale_std(meta, root, reader=filter_record):
-    """Global std (mV) of band-passed samples over labeled records in folds 1-8."""
     fit = meta[(meta["strat_fold"] <= FIT_FOLDS_MAX) & (meta["superclasses"].str.len() > 0)]
     assert (fit["strat_fold"] <= FIT_FOLDS_MAX).all()
     state = (0, 0.0, 0.0)
@@ -61,14 +55,11 @@ def fit_scale_std(meta, root, reader=filter_record):
     return float(np.sqrt(m2 / n)), len(fit)
 
 def preprocess_record(root, filename_lr, scale=SCALE_MV):
-    """Raw -> band-passed -> divided by the global constant. float32 (1000, 12)."""
     z = (filter_record(root, filename_lr) / scale).astype(np.float32)
     check(z, f"scaled {filename_lr}")
     return z
 
 def scan_all(meta, root, scale=SCALE_MV):
-    """Full scan of EVERY record in meta: raw, filtered and scaled arrays must each be
-    (1000, 12) with no NaN/Inf. Returns the bad records instead of stopping at the first."""
     bad, peak, peak_id = [], 0.0, None
     for i, (ecg_id, fn) in enumerate(meta["filename_lr"].items(), 1):
         try:
