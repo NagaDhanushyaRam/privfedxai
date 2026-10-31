@@ -8,7 +8,7 @@ from src.eval.loading import MODELS, load_split
 from src.eval.metrics import predicted_positive_rate
 
 OUT = Path("results/cnn/compare_val.csv")
-ORDER = ["cnn", "lr", "lr_smote", "rf", "rf_smote", "svm", "svm_smote"]
+ORDER = ["cnn", "attn", "lr", "lr_smote", "rf", "rf_smote", "svm", "svm_smote"]
 
 
 def main():
