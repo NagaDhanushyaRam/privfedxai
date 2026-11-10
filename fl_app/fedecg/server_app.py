@@ -22,6 +22,7 @@ def main(grid: Grid, context: Context) -> None:
     lr = context.run_config["learning-rate"]
     fraction_evaluate = context.run_config["fraction-evaluate"]
     OUT.mkdir(parents=True, exist_ok=True)
+    tag = f"eps{context.run_config['dp-epsilon']:g}_r{context.run_config['dp-rep']}"
 
     val = load_client(None, "val")              # pooled fold 9, original row order
     val_loader = DataLoader(val, batch_size=256, shuffle=False, num_workers=0)
@@ -33,7 +34,7 @@ def main(grid: Grid, context: Context) -> None:
         auc = float(roc_auc_score(y, p, average="macro"))
         print(f"round {server_round}: pooled fold-9 macro AUC {auc:.4f}", flush=True)
         if server_round == num_rounds:
-            np.savez(OUT / "fl_val_probs.npz", ecg_id_val=val.ecg_id, P_val=p)
+            np.savez(OUT / f"fl_val_probs_{tag}.npz", ecg_id_val=val.ecg_id, P_val=p)
         return MetricRecord({"macro_auc": auc})
 
     torch.manual_seed(0)                        # same seed as the centralized runs
@@ -42,4 +43,4 @@ def main(grid: Grid, context: Context) -> None:
     result = strategy.start(grid=grid, initial_arrays=arrays,
                             train_config=ConfigRecord({"lr": lr}),
                             num_rounds=num_rounds, evaluate_fn=global_evaluate)
-    torch.save(result.arrays.to_torch_state_dict(), OUT / "fl_last.pt")
+    torch.save(result.arrays.to_torch_state_dict(), OUT / f"fl_{tag}_last.pt")

@@ -3,7 +3,7 @@ from flwr.app import ArrayRecord, Context, Message, MetricRecord, RecordDict
 from flwr.clientapp import ClientApp
 
 from src.federated.data import CLIENTS, load_client
-from src.federated.local_train import train_local
+from src.federated.local_train import train_local, train_local_dp
 from src.models.cnn_attn import ECGCNNAttn
 
 app = ClientApp()
@@ -18,11 +18,15 @@ def train(msg: Message, context: Context):
     model.load_state_dict(msg.content["arrays"].to_torch_state_dict())
 
     ds = load_client(client, "train")
-    loss = train_local(model, ds,
-                       context.run_config["local-epochs"],
-                       msg.content["config"]["lr"],
-                       context.run_config["batch-size"], "cpu")
-    print(f"[{client}] n={len(ds)} train_loss={loss:.4f}", flush=True)
+    rc = context.run_config
+    lr = msg.content["config"]["lr"]
+    if rc["dp-epsilon"] > 0:
+        loss, sigma = train_local_dp(model, ds, rc["local-epochs"], lr, rc["batch-size"], "cpu",
+                                    rc["dp-epsilon"], rc["dp-delta"], rc["dp-rounds"], rc["dp-clip"])
+        print(f"[{client}] n={len(ds)} train_loss={loss:.4f} sigma={sigma:.2f}", flush=True)
+    else:
+        loss = train_local(model, ds, rc["local-epochs"], lr, rc["batch-size"], "cpu")
+        print(f"[{client}] n={len(ds)} train_loss={loss:.4f}", flush=True)
 
     content = RecordDict({
         "arrays": ArrayRecord(model.state_dict()),
