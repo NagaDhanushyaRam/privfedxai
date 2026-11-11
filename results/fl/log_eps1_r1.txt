@@ -1,0 +1,899 @@
+Using SuperLink: local (127.0.0.1:39091)
+Successfully started run 15469285155897074731
+[92mINFO [0m:      Starting logstream for run_id `15469285155897074731`
+[92mINFO [0m:      Starting Flower Simulation
+[93mWARNING [0m:   Since flwr 1.32, default simulated SuperNodes changed from 10 to 2.
+[92mINFO [0m:      Federation `@none/default` (5 simulated SuperNodes)
+[92mINFO [0m:      To change federation size, use the following command:
+[92mINFO [0m:      	flwr federation simulation-config @none/default <superlink> --num-supernodes <N>
+[93mWARNING [0m:   Skipping `flwr` dependency from app requirements to avoid replacing the running Flower installation.
+[92mINFO [0m:      No non-`flwr` dependencies found in pyproject.toml. Proceeding with isolated runtime environment creation.
+[92mINFO [0m:      Created env for run in: C:\Users\nmunn\.flwr\runtime-envs\15469285155897074731
+[92mINFO [0m:      Installing application dependencies...
+[92mINFO [0m:      uv sync took 6.1 seconds.
+[92mINFO [0m:      Installed: [alembic==1.20.1, annotated-doc==0.0.6, annotated-types==0.8.0, anyio==4.16.0, attrs==26.1.0, certifi==2026.10.23, cffi==2.1.1, charset-normalizer==3.5.2, click==8.5.1, colorama==0.4.6, cryptography==50.0.2, fastapi==0.138.2, filelock==4.2.10, greenlet==3.5.6, grpcio==1.85.1, h11==0.16.0, httpcore==1.0.9, httptools==0.9.0, httpx==0.28.1, idna==3.20, iterators==0.0.2, jsonschema-specifications==2025.9.1, jsonschema==4.26.0, mako==1.4.3, markdown-it-py==4.3.0, markupsafe==3.0.4, mdurl==0.1.2, msgpack==1.2.4, numpy==2.4.6, packaging==25.0, pathspec==1.1.1, prompt-toolkit==3.0.53, protobuf==6.33.6, pycparser==3.12, pycryptodome==3.24.1, pydantic-core==2.50.4, pydantic==2.14.3, pygments==2.21.0, python-dotenv==1.2.4, pyyaml==6.0.3, ray==2.55.1, referencing==0.37.0, requests==2.34.2, rich==14.3.4, rpds-py==2026.9.1, shellingham==1.5.4, sqlalchemy==2.1.8, starlette==1.3.1, tomli-w==1.2.0, tomli==2.5.0, typer==0.20.1, typing-extensions==4.16.0, typing-inspection==0.4.5, urllib3==2.8.0, uv==0.13.7, uvicorn==0.49.0, watchfiles==1.3.0, wcwidth==0.9.4, websockets==17.4]
+[92mINFO [0m:      App dependencies installed successfully via uv sync.
+[93mWARNING [0m:   fraction_evaluate is set to 0.0. Federated evaluation will be skipped.
+11/10/2026 18:20:20:WARNING:fraction_evaluate is set to 0.0. Federated evaluation will be skipped.
+[92mINFO [0m:      Starting FedAvg strategy:
+11/10/2026 18:20:20:INFO:Starting FedAvg strategy:
+[92mINFO [0m:      	├── Number of rounds: 30
+11/10/2026 18:20:20:INFO:	├── Number of rounds: 30
+[92mINFO [0m:      	├── ArrayRecord (0.67 MB)
+11/10/2026 18:20:20:INFO:	├── ArrayRecord (0.67 MB)
+[92mINFO [0m:      	├── ConfigRecord (train): {'lr': 0.001}
+11/10/2026 18:20:20:INFO:	├── ConfigRecord (train): {'lr': 0.001}
+[92mINFO [0m:      	├── ConfigRecord (evaluate): (empty!)
+11/10/2026 18:20:20:INFO:	├── ConfigRecord (evaluate): (empty!)
+[92mINFO [0m:      	├──> Sampling:
+11/10/2026 18:20:20:INFO:	├──> Sampling:
+[92mINFO [0m:      	│	├──Fraction: train (1.00) | evaluate ( 0.00)
+11/10/2026 18:20:20:INFO:	│	├──Fraction: train (1.00) | evaluate ( 0.00)
+[92mINFO [0m:      	│	├──Minimum nodes: train (2) | evaluate (0)
+11/10/2026 18:20:20:INFO:	│	├──Minimum nodes: train (2) | evaluate (0)
+[92mINFO [0m:      	│	└──Minimum available nodes: 2
+11/10/2026 18:20:20:INFO:	│	└──Minimum available nodes: 2
+[92mINFO [0m:      	└──> Keys in records:
+11/10/2026 18:20:20:INFO:	└──> Keys in records:
+[92mINFO [0m:      		├── Weighted by: 'num-examples'
+11/10/2026 18:20:20:INFO:		├── Weighted by: 'num-examples'
+[92mINFO [0m:      		├── ArrayRecord key: 'arrays'
+11/10/2026 18:20:20:INFO:		├── ArrayRecord key: 'arrays'
+[92mINFO [0m:      		└── ConfigRecord key: 'config'
+11/10/2026 18:20:20:INFO:		└── ConfigRecord key: 'config'
+[92mINFO [0m:      
+11/10/2026 18:20:20:INFO:
+11/10/2026 18:20:20:DEBUG:Initialising: RayBackend
+11/10/2026 18:20:20:DEBUG:Backend config: {'client_resources': {'num_cpus': 2, 'num_gpus': 0.0}, 'init_args': {'logging_level': 'WARNING', 'log_to_driver': True}, 'actor': {'tensorflow': 0}}
+round 0: pooled fold-9 macro AUC 0.4699
+[92mINFO [0m:      Initial global evaluation results: {'macro_auc': 0.46992560039754966}
+11/10/2026 18:20:21:INFO:Initial global evaluation results: {'macro_auc': 0.46992560039754966}
+[92mINFO [0m:      
+11/10/2026 18:20:21:INFO:
+[92mINFO [0m:      [ROUND 1/30]
+11/10/2026 18:20:21:INFO:[ROUND 1/30]
+[92mINFO [0m:      configure_train: Sampled 5 nodes (out of 5)
+11/10/2026 18:20:21:INFO:configure_train: Sampled 5 nodes (out of 5)
+C:\Users\nmunn\.flwr\runtime-envs\15469285155897074731\Lib\site-packages\ray\_private\worker.py:2051: FutureWarning: Tip: In future versions of Ray, Ray will no longer override accelerator visible devices env var if num_gpus=0 or num_gpus=None (default). To enable this behavior and turn off this error message, set RAY_ACCEL_ENV_VAR_OVERRIDE_ON_ZERO=0
+  warnings.warn(
+11/10/2026 18:20:29:DEBUG:Constructed ActorPool with: 8 actors
+[33m(raylet)[0m Stack (most recent call first):
+[33m(raylet)[0m   File "C:\Users\nmunn\.flwr\runtime-envs\15469285155897074731\Lib\site-packages\ray\_private\worker.py", line 628 in job_logging_config
+[33m(raylet)[0m   File "C:\Users\nmunn\.flwr\runtime-envs\15469285155897074731\Lib\site-packages\ray\_private\worker.py", line 2801 in disconnect
+[33m(raylet)[0m   File "C:\Users\nmunn\.flwr\runtime-envs\15469285155897074731\Lib\site-packages\ray\_private\worker.py", line 2132 in shutdown
+[33m(raylet)[0m   File "C:\Users\nmunn\.flwr\runtime-envs\15469285155897074731\Lib\site-packages\ray\_private\worker.py", line 1143 in wrapper
+[33m(raylet)[0m   File "C:\Users\nmunn\.flwr\runtime-envs\15469285155897074731\Lib\site-packages\ray\_private\worker.pyWindows fatal exception: access violation
+[33m(raylet)[0m 
+[33m(raylet)[0m ", line 628 in job_logging_config
+[33m(raylet)[0m 
+[33m(raylet)[0m   File   File ""C:\Users\nmunn\.flwr\runtime-envs\15469285155897074731\Lib\site-packages\ray\_private\worker.py", line Windows fatal exception: access violationC:\Users\nmunn\.flwr\runtime-envs\15469285155897074731\Lib\site-packages\ray\_private\worker.pyWindows fatal exception: ", line 2801 in 628 in 
+[33m(raylet)[0m 
+[33m(raylet)[0m   File job_logging_config
+[33m(raylet)[0m 
+[33m(raylet)[0m disconnect
+[33m(raylet)[0m   File "Windows fatal exception: , line 2801 in disconnectC:\Users\nmunn\.flwr\runtime-envs\15469285155897074731\Lib\site-packages\ray\_private\worker.py"Windows fatal exception: access violation
+[33m(raylet)[0m 
+[33m(raylet)[0m "  File "C:\Users\nmunn\.flwr\runtime-envs\15469285155897074731\Lib\site-packages\ray\_private\worker.py", line 628 in job_logging_config
+[33m(raylet)[0m   File "C:\Users\nmunn\.flwr\runtime-envs\15469285155897074731\Lib\site-packages\ray\_private\worker.py"Stack (most recent call first):
+[33m(raylet)[0m , line 628 in job_logging_config
+[33m(raylet)[0m access violation
+[33m(raylet)[0m 
+[33m(raylet)[0m , line access violation
+[33m(raylet)[0m 
+[33m(raylet)[0m   File "C:\Users\nmunn\.flwr\runtime-envs\15469285155897074731\Lib\site-packages\ray\_private\worker.py
+[33m(raylet)[0m , line 2801 in disconnect
+[33m(raylet)[0m   File "C:\Users\nmunn\.flwr\runtime-envs\15469285155897074731\Lib\site-packages\ray\_private\worker.py", line 2132", line 628 in job_logging_config  File "C:\Users\nmunn\.flwr\runtime-envs\15469285155897074731\Lib\site-packages\ray\_private\worker.py", line 2801 in disconnect
+[33m(raylet)[0m   File "  File  in "C:\Users\nmunn\.flwr\runtime-envs\15469285155897074731\Lib\site-packages\ray\_private\worker.py", line 2801 in disconnect
+[33m(raylet)[0m   File "C:\Users\nmunn\.flwr\runtime-envs\15469285155897074731\Lib\site-packages\ray\_private\worker.py", line 2132 in shutdown  File 2132C:\Users\nmunn\.flwr\runtime-envs\15469285155897074731\Lib\site-packages\ray\_private\worker.py", line 628shutdown
+[33m(raylet)[0m C:\Users\nmunn\.flwr\runtime-envs\15469285155897074731\Lib\site-packages\ray\_private\worker.pyWindows fatal exception:  in   File  in job_logging_config
+[33m(raylet)[0m   File "C:\Users\nmunn\.flwr\runtime-envs\15469285155897074731\Lib\site-packages\ray\_private\worker.pyaccess violationshutdown
+[33m(raylet)[0m "C:\Users\nmunn\.flwr\runtime-envs\15469285155897074731\Lib\site-packages\ray\_private\worker.py  File ", line 2132
+[33m(raylet)[0m 
+[33m(raylet)[0m   File "C:\Users\nmunn\.flwr\runtime-envs\15469285155897074731\Lib\site-packages\ray\_private\worker.py", line 628" in , line 1143 in ""C:\Users\nmunn\.flwr\runtime-envs\15469285155897074731\Lib\site-packages\ray\_private\worker.py"Stack (most recent call first):
+[33m(raylet)[0m shutdown
+[33m(raylet)[0m   File ", line C:\Users\nmunn\.flwr\runtime-envs\15469285155897074731\Lib\site-packages\ray\_private\worker.py in 
+[33m(raylet)[0m , line 2801 in disconnect1143", line 1143  File   File "
+[33m(raylet)[0m wrapper  File  in job_logging_config in 
+[33m(raylet)[0m   File "C:\Users\nmunn\.flwr\runtime-envs\15469285155897074731\Lib\site-packages\ray\_private\worker.py""C:\Users\nmunn\.flwr\runtime-envs\15469285155897074731\Lib\site-packages\ray\_private\worker.py"""C:\Users\nmunn\.flwr\runtime-envs\15469285155897074731\Lib\site-packages\ray\_private\client_mode_hook.py", line 107, line 2132 in shutdown
+[33m(raylet)[0m   File "C:\Users\nmunn\.flwr\runtime-envs\15469285155897074731\Lib\site-packages\ray\_private\worker.py"C:\Users\nmunn\.flwr\runtime-envs\15469285155897074731\Lib\site-packages\ray\_private\worker.py", line 
+[33m(raylet)[0m   File "C:\Users\nmunn\.flwr\runtime-envs\15469285155897074731\Lib\site-packages\ray\_private\client_mode_hook.py", line 107, line 1143wrapperWindows fatal exception: access violation
+[33m(raylet)[0m 
+[33m(raylet)[0m , line "C:\Users\nmunn\.flwr\runtime-envs\15469285155897074731\Lib\site-packages\ray\_private\worker.py", line 2132 in  in wrapper
+[33m(raylet)[0m  in 2801 in disconnect
+[33m(raylet)[0m   File "C:\Users\nmunn\.flwr\runtime-envs\15469285155897074731\Lib\site-packages\ray\_private\worker.py", line wrapper
+[33m(raylet)[0m   File ""Stack (most recent call first):
+[33m(raylet)[0m wrapper
+[33m(raylet)[0m  in wrapper
+[33m(raylet)[0m   File "", line 107 in wrapper
+[33m(raylet)[0m   File  in "C:\Users\nmunn\.flwr\runtime-envs\15469285155897074731\Lib\site-packages\ray\_private\worker.py", line 628 in job_logging_config
+[33m(raylet)[0m  in wrapperC:\Users\nmunn\.flwr\runtime-envs\15469285155897074731\Lib\site-packages\ray\_private\worker.py, line 107 in wrapper
+[33m(raylet)[0m   File "628 in job_logging_config in wrapper, line "
+[33m(raylet)[0m 
+[33m(raylet)[0m 2132 in C:\Users\nmunn\.flwr\runtime-envs\15469285155897074731\Lib\site-packages\ray\_private\client_mode_hook.py
+[33m(raylet)[0m   File "", line 107 in   File shutdown
+[33m(raylet)[0m , line 1143 in C:\Users\nmunn\.flwr\runtime-envs\15469285155897074731\Lib\site-packages\ray\_private\client_mode_hook.py in disconnect
+[33m(raylet)[0m ", line 107  File " in wrapper
+[33m(raylet)[0m C:\Users\nmunn\.flwr\runtime-envs\15469285155897074731\Lib\site-packages\ray\_private\client_mode_hook.py", line 107 in wrapper
+[36m(ClientAppActor pid=52980)[0m C:\Users\nmunn\anaconda3\envs\privfedxai\Lib\site-packages\opacus\privacy_engine.py:98: UserWarning: Secure RNG turned off. This is perfectly fine for experimentation as it allows for much faster training performance, but remember to turn it on and retrain one last time before production with ``secure_mode`` turned on.
+[36m(ClientAppActor pid=52980)[0m   warnings.warn(
+[33m(raylet)[0m Stack (most recent call first):[32m [repeated 12x across cluster] (Ray deduplicates logs by default. Set RAY_DEDUP_LOGS=0 to disable log deduplication, or see https://docs.ray.io/en/master/ray-observability/user-guides/configure-logging.html#log-deduplication for more options.)[0m
+[33m(raylet)[0m   File "C:\Users\nmunn\.flwr\runtime-envs\15469285155897074731\Lib\site-packages\ray\_private\worker.py", line 628 in job_logging_config[32m [repeated 6x across cluster][0m
+[33m(raylet)[0m   File "C:\Users\nmunn\.flwr\runtime-envs\15469285155897074731\Lib\site-packages\ray\_private\worker.py", line 2801 in disconnect[32m [repeated 7x across cluster][0m
+[33m(raylet)[0m   File "C:\Users\nmunn\.flwr\runtime-envs\15469285155897074731\Lib\site-packages\ray\_private\worker.py", line 2132 in shutdown[32m [repeated 7x across cluster][0m
+[33m(raylet)[0m   File "C:\Users\nmunn\.flwr\runtime-envs\15469285155897074731\Lib\site-packages\ray\_private\client_mode_hook.py", line 107 in wrapper[32m [repeated 17x across cluster][0m
+[33m(raylet)[0m   File "C:\Users\nmunn\.flwr\runtime-envs\15469285155897074731\Lib\site-packages\ray\_private\worker.py""Windows fatal exception: access violation[32m [repeated 2x across cluster][0m
+[33m(raylet)[0m   File C:\Users\nmunn\.flwr\runtime-envs\15469285155897074731\Lib\site-packages\ray\_private\worker.py
+[33m(raylet)[0m shutdown[32m [repeated 2x across cluster][0m
+[33m(raylet)[0m   File "C:\Users\nmunn\.flwr\runtime-envs\15469285155897074731\Lib\site-packages\ray\_private\worker.pywrapper""C:\Users\nmunn\.flwr\runtime-envs\15469285155897074731\Lib\site-packages\ray\_private\worker.py", line 2801[32m [repeated 3x across cluster][0m
+[36m(ClientAppActor pid=38384)[0m C:\Projects\privfedxai\src\models\train.py:27: UserWarning: Full backward hook is firing when gradients are computed with respect to module outputs since no inputs require gradients. See https://docs.pytorch.org/docs/main/generated/torch.nn.Module.html#torch.nn.Module.register_full_backward_hook for more details.
+[36m(ClientAppActor pid=38384)[0m   opt.zero_grad(); loss.backward(); opt.step()
+[36m(ClientAppActor pid=52980)[0m [site3] n=332 train_loss=1.0256 sigma=9.22
+[36m(ClientAppActor pid=46476)[0m C:\Users\nmunn\anaconda3\envs\privfedxai\Lib\site-packages\opacus\accountants\analysis\rdp.py:332: UserWarning: Optimal order is the largest alpha. Please consider expanding the range of alphas to get a tighter privacy bound.
+[36m(ClientAppActor pid=38384)[0m [rest] n=705 train_loss=1.0169 sigma=6.56
+[36m(ClientAppActor pid=42912)[0m C:\Users\nmunn\anaconda3\envs\privfedxai\Lib\site-packages\opacus\privacy_engine.py:98: UserWarning: Secure RNG turned off. This is perfectly fine for experimentation as it allows for much faster training performance, but remember to turn it on and retrain one last time before production with ``secure_mode`` turned on.[32m [repeated 3x across cluster][0m
+[36m(ClientAppActor pid=47060)[0m   warnings.warn([32m [repeated 6x across cluster][0m
+[36m(ClientAppActor pid=42912)[0m C:\Projects\privfedxai\src\models\train.py:27: UserWarning: Full backward hook is firing when gradients are computed with respect to module outputs since no inputs require gradients. See https://docs.pytorch.org/docs/main/generated/torch.nn.Module.html#torch.nn.Module.register_full_backward_hook for more details.[32m [repeated 3x across cluster][0m
+[36m(ClientAppActor pid=42912)[0m   opt.zero_grad(); loss.backward(); opt.step()[32m [repeated 3x across cluster][0m
+[36m(ClientAppActor pid=47060)[0m C:\Users\nmunn\anaconda3\envs\privfedxai\Lib\site-packages\opacus\accountants\analysis\rdp.py:332: UserWarning: Optimal order is the largest alpha. Please consider expanding the range of alphas to get a tighter privacy bound.[32m [repeated 2x across cluster][0m
+[36m(ClientAppActor pid=46476)[0m [site2] n=3318 train_loss=1.0720 sigma=3.20
+[36m(ClientAppActor pid=42912)[0m [site1] n=5038 train_loss=1.1363 sigma=2.64
+[36m(ClientAppActor pid=47060)[0m [site0] n=7691 train_loss=1.2970 sigma=2.17
+[92mINFO [0m:      aggregate_train: Received 5 results and 0 failures
+11/10/2026 18:21:30:INFO:aggregate_train: Received 5 results and 0 failures
+[92mINFO [0m:      	└──> Aggregated MetricRecord: {'train_loss': 1.1890764147915376}
+11/10/2026 18:21:30:INFO:	└──> Aggregated MetricRecord: {'train_loss': 1.1890764147915376}
+[92mINFO [0m:      Global evaluation
+11/10/2026 18:21:30:INFO:Global evaluation
+round 1: pooled fold-9 macro AUC 0.7086
+[92mINFO [0m:      	└──> MetricRecord: {'macro_auc': 0.7086221755003164}
+11/10/2026 18:21:34:INFO:	└──> MetricRecord: {'macro_auc': 0.7086221755003164}
+[92mINFO [0m:      
+11/10/2026 18:21:34:INFO:
+[92mINFO [0m:      [ROUND 2/30]
+11/10/2026 18:21:34:INFO:[ROUND 2/30]
+[92mINFO [0m:      configure_train: Sampled 5 nodes (out of 5)
+11/10/2026 18:21:34:INFO:configure_train: Sampled 5 nodes (out of 5)
+[36m(ClientAppActor pid=38384)[0m [site3] n=332 train_loss=1.3428 sigma=9.22
+[36m(ClientAppActor pid=52980)[0m [rest] n=705 train_loss=1.2785 sigma=6.56
+[36m(ClientAppActor pid=46476)[0m [site2] n=3318 train_loss=1.4186 sigma=3.20
+[36m(ClientAppActor pid=42912)[0m [site1] n=5038 train_loss=1.4377 sigma=2.64
+[36m(ClientAppActor pid=47060)[0m [site0] n=7691 train_loss=1.4424 sigma=2.17
+[92mINFO [0m:      aggregate_train: Received 5 results and 0 failures
+11/10/2026 18:22:05:INFO:aggregate_train: Received 5 results and 0 failures
+[92mINFO [0m:      	└──> Aggregated MetricRecord: {'train_loss': 1.4276645234946561}
+11/10/2026 18:22:05:INFO:	└──> Aggregated MetricRecord: {'train_loss': 1.4276645234946561}
+[92mINFO [0m:      Global evaluation
+11/10/2026 18:22:05:INFO:Global evaluation
+round 2: pooled fold-9 macro AUC 0.7441
+[92mINFO [0m:      	└──> MetricRecord: {'macro_auc': 0.7441203579627349}
+11/10/2026 18:22:06:INFO:	└──> MetricRecord: {'macro_auc': 0.7441203579627349}
+[92mINFO [0m:      
+11/10/2026 18:22:06:INFO:
+[92mINFO [0m:      [ROUND 3/30]
+11/10/2026 18:22:06:INFO:[ROUND 3/30]
+[92mINFO [0m:      configure_train: Sampled 5 nodes (out of 5)
+11/10/2026 18:22:06:INFO:configure_train: Sampled 5 nodes (out of 5)
+[36m(ClientAppActor pid=52980)[0m [site3] n=332 train_loss=1.4604 sigma=9.22
+[36m(ClientAppActor pid=38384)[0m [rest] n=705 train_loss=1.4968 sigma=6.56
+[36m(ClientAppActor pid=46476)[0m [site2] n=3318 train_loss=1.5286 sigma=3.20
+[36m(ClientAppActor pid=42912)[0m [site1] n=5038 train_loss=1.4321 sigma=2.64
+[36m(ClientAppActor pid=47060)[0m [site0] n=7691 train_loss=1.4465 sigma=2.17
+[92mINFO [0m:      aggregate_train: Received 5 results and 0 failures
+11/10/2026 18:22:45:INFO:aggregate_train: Received 5 results and 0 failures
+[92mINFO [0m:      	└──> Aggregated MetricRecord: {'train_loss': 1.4605632616432687}
+11/10/2026 18:22:45:INFO:	└──> Aggregated MetricRecord: {'train_loss': 1.4605632616432687}
+[92mINFO [0m:      Global evaluation
+11/10/2026 18:22:45:INFO:Global evaluation
+round 3: pooled fold-9 macro AUC 0.7551
+[92mINFO [0m:      	└──> MetricRecord: {'macro_auc': 0.7551313961264834}
+11/10/2026 18:22:46:INFO:	└──> MetricRecord: {'macro_auc': 0.7551313961264834}
+[92mINFO [0m:      
+11/10/2026 18:22:46:INFO:
+[92mINFO [0m:      [ROUND 4/30]
+11/10/2026 18:22:46:INFO:[ROUND 4/30]
+[92mINFO [0m:      configure_train: Sampled 5 nodes (out of 5)
+11/10/2026 18:22:46:INFO:configure_train: Sampled 5 nodes (out of 5)
+[36m(ClientAppActor pid=38384)[0m [site3] n=332 train_loss=1.3969 sigma=9.22
+[36m(ClientAppActor pid=52980)[0m [rest] n=705 train_loss=1.5454 sigma=6.56
+[36m(ClientAppActor pid=46476)[0m [site2] n=3318 train_loss=1.4481 sigma=3.20
+[36m(ClientAppActor pid=42912)[0m [site1] n=5038 train_loss=1.3871 sigma=2.64
+[36m(ClientAppActor pid=47060)[0m [site0] n=7691 train_loss=1.3318 sigma=2.17
+[92mINFO [0m:      aggregate_train: Received 5 results and 0 failures
+11/10/2026 18:23:16:INFO:aggregate_train: Received 5 results and 0 failures
+[92mINFO [0m:      	└──> Aggregated MetricRecord: {'train_loss': 1.3807689837478136}
+11/10/2026 18:23:16:INFO:	└──> Aggregated MetricRecord: {'train_loss': 1.3807689837478136}
+[92mINFO [0m:      Global evaluation
+11/10/2026 18:23:16:INFO:Global evaluation
+round 4: pooled fold-9 macro AUC 0.7618
+[92mINFO [0m:      	└──> MetricRecord: {'macro_auc': 0.7617949851199601}
+11/10/2026 18:23:16:INFO:	└──> MetricRecord: {'macro_auc': 0.7617949851199601}
+[92mINFO [0m:      
+11/10/2026 18:23:16:INFO:
+[92mINFO [0m:      [ROUND 5/30]
+11/10/2026 18:23:16:INFO:[ROUND 5/30]
+[92mINFO [0m:      configure_train: Sampled 5 nodes (out of 5)
+11/10/2026 18:23:16:INFO:configure_train: Sampled 5 nodes (out of 5)
+[36m(ClientAppActor pid=52980)[0m [site3] n=332 train_loss=1.3867 sigma=9.22
+[36m(ClientAppActor pid=38384)[0m [rest] n=705 train_loss=1.4096 sigma=6.56
+[36m(ClientAppActor pid=46476)[0m [site2] n=3318 train_loss=1.3466 sigma=3.20
+[36m(ClientAppActor pid=42912)[0m [site1] n=5038 train_loss=1.2877 sigma=2.64
+[92mINFO [0m:      aggregate_train: Received 5 results and 0 failures
+[36m(ClientAppActor pid=47060)[0m [site0] n=7691 train_loss=1.2137 sigma=2.1711/10/2026 18:23:56:INFO:aggregate_train: Received 5 results and 0 failures
+
+[92mINFO [0m:      	└──> Aggregated MetricRecord: {'train_loss': 1.2727759001306849}
+11/10/2026 18:23:56:INFO:	└──> Aggregated MetricRecord: {'train_loss': 1.2727759001306849}
+[92mINFO [0m:      Global evaluation
+11/10/2026 18:23:56:INFO:Global evaluation
+round 5: pooled fold-9 macro AUC 0.7675
+[92mINFO [0m:      	└──> MetricRecord: {'macro_auc': 0.7674918116708593}
+11/10/2026 18:23:57:INFO:	└──> MetricRecord: {'macro_auc': 0.7674918116708593}
+[92mINFO [0m:      
+11/10/2026 18:23:57:INFO:
+[92mINFO [0m:      [ROUND 6/30]
+11/10/2026 18:23:57:INFO:[ROUND 6/30]
+[92mINFO [0m:      configure_train: Sampled 5 nodes (out of 5)
+11/10/2026 18:23:57:INFO:configure_train: Sampled 5 nodes (out of 5)
+[36m(ClientAppActor pid=38384)[0m [site3] n=332 train_loss=1.0586 sigma=9.22
+[36m(ClientAppActor pid=52980)[0m [rest] n=705 train_loss=1.1760 sigma=6.56
+[36m(ClientAppActor pid=46476)[0m [site2] n=3318 train_loss=1.1976 sigma=3.20
+[36m(ClientAppActor pid=42912)[0m [site1] n=5038 train_loss=1.0981 sigma=2.64
+[36m(ClientAppActor pid=47060)[0m [site0] n=7691 train_loss=1.0541 sigma=2.17
+[92mINFO [0m:      aggregate_train: Received 5 results and 0 failures
+11/10/2026 18:24:37:INFO:aggregate_train: Received 5 results and 0 failures
+[92mINFO [0m:      	└──> Aggregated MetricRecord: {'train_loss': 1.1000594110409228}
+11/10/2026 18:24:37:INFO:	└──> Aggregated MetricRecord: {'train_loss': 1.1000594110409228}
+[92mINFO [0m:      Global evaluation
+11/10/2026 18:24:37:INFO:Global evaluation
+round 6: pooled fold-9 macro AUC 0.7710
+[92mINFO [0m:      	└──> MetricRecord: {'macro_auc': 0.7710213620659445}
+11/10/2026 18:24:38:INFO:	└──> MetricRecord: {'macro_auc': 0.7710213620659445}
+[92mINFO [0m:      
+11/10/2026 18:24:38:INFO:
+[92mINFO [0m:      [ROUND 7/30]
+11/10/2026 18:24:38:INFO:[ROUND 7/30]
+[92mINFO [0m:      configure_train: Sampled 5 nodes (out of 5)
+11/10/2026 18:24:38:INFO:configure_train: Sampled 5 nodes (out of 5)
+[36m(ClientAppActor pid=52980)[0m [site3] n=332 train_loss=0.9584 sigma=9.22
+[36m(ClientAppActor pid=38384)[0m [rest] n=705 train_loss=1.0772 sigma=6.56
+[36m(ClientAppActor pid=46476)[0m [site2] n=3318 train_loss=1.0374 sigma=3.20
+[36m(ClientAppActor pid=42912)[0m [site1] n=5038 train_loss=0.9959 sigma=2.64
+[36m(ClientAppActor pid=47060)[0m [site0] n=7691 train_loss=1.0125 sigma=2.17
+[92mINFO [0m:      aggregate_train: Received 5 results and 0 failures
+11/10/2026 18:25:09:INFO:aggregate_train: Received 5 results and 0 failures
+[92mINFO [0m:      	└──> Aggregated MetricRecord: {'train_loss': 1.0140584928091796}
+11/10/2026 18:25:09:INFO:	└──> Aggregated MetricRecord: {'train_loss': 1.0140584928091796}
+[92mINFO [0m:      Global evaluation
+11/10/2026 18:25:09:INFO:Global evaluation
+round 7: pooled fold-9 macro AUC 0.7729
+[92mINFO [0m:      	└──> MetricRecord: {'macro_auc': 0.7729463099675102}
+11/10/2026 18:25:09:INFO:	└──> MetricRecord: {'macro_auc': 0.7729463099675102}
+[92mINFO [0m:      
+11/10/2026 18:25:09:INFO:
+[92mINFO [0m:      [ROUND 8/30]
+11/10/2026 18:25:09:INFO:[ROUND 8/30]
+[92mINFO [0m:      configure_train: Sampled 5 nodes (out of 5)
+11/10/2026 18:25:09:INFO:configure_train: Sampled 5 nodes (out of 5)
+[36m(ClientAppActor pid=38384)[0m [site3] n=332 train_loss=0.9934 sigma=9.22
+[36m(ClientAppActor pid=52980)[0m [rest] n=705 train_loss=1.0047 sigma=6.56
+[36m(ClientAppActor pid=46476)[0m [site2] n=3318 train_loss=1.0212 sigma=3.20
+[36m(ClientAppActor pid=42912)[0m [site1] n=5038 train_loss=0.9515 sigma=2.64
+[36m(ClientAppActor pid=47060)[0m [site0] n=7691 train_loss=0.9848 sigma=2.17
+[92mINFO [0m:      aggregate_train: Received 5 results and 0 failures
+11/10/2026 18:25:48:INFO:aggregate_train: Received 5 results and 0 failures
+[92mINFO [0m:      	└──> Aggregated MetricRecord: {'train_loss': 0.9830443455622435}
+11/10/2026 18:25:48:INFO:	└──> Aggregated MetricRecord: {'train_loss': 0.9830443455622435}
+[92mINFO [0m:      Global evaluation
+11/10/2026 18:25:48:INFO:Global evaluation
+round 8: pooled fold-9 macro AUC 0.7767
+[92mINFO [0m:      	└──> MetricRecord: {'macro_auc': 0.7766808804702037}
+11/10/2026 18:25:49:INFO:	└──> MetricRecord: {'macro_auc': 0.7766808804702037}
+[92mINFO [0m:      
+11/10/2026 18:25:49:INFO:
+[92mINFO [0m:      [ROUND 9/30]
+11/10/2026 18:25:49:INFO:[ROUND 9/30]
+[92mINFO [0m:      configure_train: Sampled 5 nodes (out of 5)
+11/10/2026 18:25:49:INFO:configure_train: Sampled 5 nodes (out of 5)
+[36m(ClientAppActor pid=52980)[0m [site3] n=332 train_loss=0.9209 sigma=9.22
+[36m(ClientAppActor pid=38384)[0m [rest] n=705 train_loss=0.9817 sigma=6.56
+[36m(ClientAppActor pid=46476)[0m [site2] n=3318 train_loss=1.0499 sigma=3.20
+[36m(ClientAppActor pid=42912)[0m [site1] n=5038 train_loss=0.9494 sigma=2.64
+[36m(ClientAppActor pid=47060)[0m [site0] n=7691 train_loss=1.0003 sigma=2.17
+[92mINFO [0m:      aggregate_train: Received 5 results and 0 failures
+11/10/2026 18:26:18:INFO:aggregate_train: Received 5 results and 0 failures
+[92mINFO [0m:      	└──> Aggregated MetricRecord: {'train_loss': 0.9926223127735365}
+11/10/2026 18:26:18:INFO:	└──> Aggregated MetricRecord: {'train_loss': 0.9926223127735365}
+[92mINFO [0m:      Global evaluation
+11/10/2026 18:26:18:INFO:Global evaluation
+round 9: pooled fold-9 macro AUC 0.7798
+[92mINFO [0m:      	└──> MetricRecord: {'macro_auc': 0.7797533463432369}
+11/10/2026 18:26:19:INFO:	└──> MetricRecord: {'macro_auc': 0.7797533463432369}
+[92mINFO [0m:      
+11/10/2026 18:26:19:INFO:
+[92mINFO [0m:      [ROUND 10/30]
+11/10/2026 18:26:19:INFO:[ROUND 10/30]
+[92mINFO [0m:      configure_train: Sampled 5 nodes (out of 5)
+11/10/2026 18:26:19:INFO:configure_train: Sampled 5 nodes (out of 5)
+[36m(ClientAppActor pid=38384)[0m [site3] n=332 train_loss=1.0718 sigma=9.22
+[36m(ClientAppActor pid=52980)[0m [rest] n=705 train_loss=1.0106 sigma=6.56
+[36m(ClientAppActor pid=46476)[0m [site2] n=3318 train_loss=1.0409 sigma=3.20
+[36m(ClientAppActor pid=42912)[0m [site1] n=5038 train_loss=0.9560 sigma=2.64
+[36m(ClientAppActor pid=47060)[0m [site0] n=7691 train_loss=0.9948 sigma=2.17
+[92mINFO [0m:      aggregate_train: Received 5 results and 0 failures
+11/10/2026 18:26:48:INFO:aggregate_train: Received 5 results and 0 failures
+[92mINFO [0m:      	└──> Aggregated MetricRecord: {'train_loss': 0.9944524917480637}
+11/10/2026 18:26:48:INFO:	└──> Aggregated MetricRecord: {'train_loss': 0.9944524917480637}
+[92mINFO [0m:      Global evaluation
+11/10/2026 18:26:48:INFO:Global evaluation
+round 10: pooled fold-9 macro AUC 0.7839
+[92mINFO [0m:      	└──> MetricRecord: {'macro_auc': 0.7839234693067517}
+11/10/2026 18:26:48:INFO:	└──> MetricRecord: {'macro_auc': 0.7839234693067517}
+[92mINFO [0m:      
+11/10/2026 18:26:48:INFO:
+[92mINFO [0m:      [ROUND 11/30]
+11/10/2026 18:26:48:INFO:[ROUND 11/30]
+[92mINFO [0m:      configure_train: Sampled 5 nodes (out of 5)
+11/10/2026 18:26:48:INFO:configure_train: Sampled 5 nodes (out of 5)
+[36m(ClientAppActor pid=52980)[0m [site3] n=332 train_loss=0.9626 sigma=9.22
+[36m(ClientAppActor pid=38384)[0m [rest] n=705 train_loss=1.0124 sigma=6.56
+[36m(ClientAppActor pid=46476)[0m [site2] n=3318 train_loss=1.0213 sigma=3.20
+[36m(ClientAppActor pid=42912)[0m [site1] n=5038 train_loss=0.9347 sigma=2.64
+[36m(ClientAppActor pid=47060)[0m [site0] n=7691 train_loss=0.9683 sigma=2.17
+[92mINFO [0m:      aggregate_train: Received 5 results and 0 failures
+11/10/2026 18:27:18:INFO:aggregate_train: Received 5 results and 0 failures
+[92mINFO [0m:      	└──> Aggregated MetricRecord: {'train_loss': 0.9703922543696599}
+11/10/2026 18:27:18:INFO:	└──> Aggregated MetricRecord: {'train_loss': 0.9703922543696599}
+[92mINFO [0m:      Global evaluation
+11/10/2026 18:27:18:INFO:Global evaluation
+round 11: pooled fold-9 macro AUC 0.7867
+[92mINFO [0m:      	└──> MetricRecord: {'macro_auc': 0.786665102018951}
+11/10/2026 18:27:18:INFO:	└──> MetricRecord: {'macro_auc': 0.786665102018951}
+[92mINFO [0m:      
+11/10/2026 18:27:18:INFO:
+[92mINFO [0m:      [ROUND 12/30]
+11/10/2026 18:27:18:INFO:[ROUND 12/30]
+[92mINFO [0m:      configure_train: Sampled 5 nodes (out of 5)
+11/10/2026 18:27:18:INFO:configure_train: Sampled 5 nodes (out of 5)
+[36m(ClientAppActor pid=38384)[0m [site3] n=332 train_loss=0.9917 sigma=9.22
+[36m(ClientAppActor pid=52980)[0m [rest] n=705 train_loss=0.9544 sigma=6.56
+[36m(ClientAppActor pid=46476)[0m [site2] n=3318 train_loss=1.0110 sigma=3.20
+[36m(ClientAppActor pid=42912)[0m [site1] n=5038 train_loss=0.9312 sigma=2.64
+[92mINFO [0m:      aggregate_train: Received 5 results and 0 failures
+11/10/2026 18:27:48:INFO:aggregate_train: Received 5 results and 0 failures
+[92mINFO [0m:      	└──> Aggregated MetricRecord: {'train_loss': 0.9683567716925943}
+11/10/2026 18:27:48:INFO:	└──> Aggregated MetricRecord: {'train_loss': 0.9683567716925943}
+[92mINFO [0m:      Global evaluation
+11/10/2026 18:27:48:INFO:Global evaluation
+[36m(ClientAppActor pid=47060)[0m [site0] n=7691 train_loss=0.9746 sigma=2.17
+round 12: pooled fold-9 macro AUC 0.7883
+[92mINFO [0m:      	└──> MetricRecord: {'macro_auc': 0.7882589556689471}
+11/10/2026 18:27:48:INFO:	└──> MetricRecord: {'macro_auc': 0.7882589556689471}
+[92mINFO [0m:      
+11/10/2026 18:27:48:INFO:
+[92mINFO [0m:      [ROUND 13/30]
+11/10/2026 18:27:48:INFO:[ROUND 13/30]
+[92mINFO [0m:      configure_train: Sampled 5 nodes (out of 5)
+11/10/2026 18:27:48:INFO:configure_train: Sampled 5 nodes (out of 5)
+[36m(ClientAppActor pid=52980)[0m [site3] n=332 train_loss=1.0008 sigma=9.22
+[36m(ClientAppActor pid=38384)[0m [rest] n=705 train_loss=0.9991 sigma=6.56
+[36m(ClientAppActor pid=46476)[0m [site2] n=3318 train_loss=1.0558 sigma=3.20
+[36m(ClientAppActor pid=42912)[0m [site1] n=5038 train_loss=0.9400 sigma=2.64
+[92mINFO [0m:      aggregate_train: Received 5 results and 0 failures
+11/10/2026 18:28:18:INFO:aggregate_train: Received 5 results and 0 failures
+[92mINFO [0m:      	└──> Aggregated MetricRecord: {'train_loss': 0.9881574239601651}
+11/10/2026 18:28:18:INFO:	└──> Aggregated MetricRecord: {'train_loss': 0.9881574239601651}
+[92mINFO [0m:      Global evaluation
+11/10/2026 18:28:18:INFO:Global evaluation
+[36m(ClientAppActor pid=47060)[0m [site0] n=7691 train_loss=0.9890 sigma=2.17
+round 13: pooled fold-9 macro AUC 0.7901
+[92mINFO [0m:      	└──> MetricRecord: {'macro_auc': 0.7901285388604568}
+11/10/2026 18:28:18:INFO:	└──> MetricRecord: {'macro_auc': 0.7901285388604568}
+[92mINFO [0m:      
+11/10/2026 18:28:18:INFO:
+[92mINFO [0m:      [ROUND 14/30]
+11/10/2026 18:28:18:INFO:[ROUND 14/30]
+[92mINFO [0m:      configure_train: Sampled 5 nodes (out of 5)
+11/10/2026 18:28:18:INFO:configure_train: Sampled 5 nodes (out of 5)
+[36m(ClientAppActor pid=38384)[0m [site3] n=332 train_loss=0.8799 sigma=9.22
+[36m(ClientAppActor pid=52980)[0m [rest] n=705 train_loss=0.9529 sigma=6.56
+[36m(ClientAppActor pid=46476)[0m [site2] n=3318 train_loss=1.0345 sigma=3.20
+[36m(ClientAppActor pid=42912)[0m [site1] n=5038 train_loss=0.9446 sigma=2.64
+[36m(ClientAppActor pid=47060)[0m [site0] n=7691 train_loss=0.9832 sigma=2.17
+[92mINFO [0m:      aggregate_train: Received 5 results and 0 failures
+11/10/2026 18:28:48:INFO:aggregate_train: Received 5 results and 0 failures
+[92mINFO [0m:      	└──> Aggregated MetricRecord: {'train_loss': 0.9785562148047393}
+11/10/2026 18:28:48:INFO:	└──> Aggregated MetricRecord: {'train_loss': 0.9785562148047393}
+[92mINFO [0m:      Global evaluation
+11/10/2026 18:28:48:INFO:Global evaluation
+round 14: pooled fold-9 macro AUC 0.7920
+[92mINFO [0m:      	└──> MetricRecord: {'macro_auc': 0.7919883561163503}
+11/10/2026 18:28:48:INFO:	└──> MetricRecord: {'macro_auc': 0.7919883561163503}
+[92mINFO [0m:      
+11/10/2026 18:28:48:INFO:
+[92mINFO [0m:      [ROUND 15/30]
+11/10/2026 18:28:48:INFO:[ROUND 15/30]
+[92mINFO [0m:      configure_train: Sampled 5 nodes (out of 5)
+11/10/2026 18:28:48:INFO:configure_train: Sampled 5 nodes (out of 5)
+[36m(ClientAppActor pid=52980)[0m [site3] n=332 train_loss=0.9881 sigma=9.22
+[36m(ClientAppActor pid=38384)[0m [rest] n=705 train_loss=1.0858 sigma=6.56
+[36m(ClientAppActor pid=46476)[0m [site2] n=3318 train_loss=1.0814 sigma=3.20
+[36m(ClientAppActor pid=42912)[0m [site1] n=5038 train_loss=0.9329 sigma=2.64
+[92mINFO [0m:      aggregate_train: Received 5 results and 0 failures
+11/10/2026 18:29:19:INFO:aggregate_train: Received 5 results and 0 failures
+[92mINFO [0m:      	└──> Aggregated MetricRecord: {'train_loss': 0.9837925034684116}
+11/10/2026 18:29:19:INFO:	└──> Aggregated MetricRecord: {'train_loss': 0.9837925034684116}
+[92mINFO [0m:      Global evaluation
+11/10/2026 18:29:19:INFO:Global evaluation
+[36m(ClientAppActor pid=47060)[0m [site0] n=7691 train_loss=0.9655 sigma=2.17
+round 15: pooled fold-9 macro AUC 0.7934
+[92mINFO [0m:      	└──> MetricRecord: {'macro_auc': 0.7933875143043936}
+11/10/2026 18:29:19:INFO:	└──> MetricRecord: {'macro_auc': 0.7933875143043936}
+[92mINFO [0m:      
+11/10/2026 18:29:19:INFO:
+[92mINFO [0m:      [ROUND 16/30]
+11/10/2026 18:29:19:INFO:[ROUND 16/30]
+[92mINFO [0m:      configure_train: Sampled 5 nodes (out of 5)
+11/10/2026 18:29:19:INFO:configure_train: Sampled 5 nodes (out of 5)
+[36m(ClientAppActor pid=38384)[0m [site3] n=332 train_loss=0.9344 sigma=9.22
+[36m(ClientAppActor pid=52980)[0m [rest] n=705 train_loss=1.0411 sigma=6.56
+[36m(ClientAppActor pid=46476)[0m [site2] n=3318 train_loss=1.0432 sigma=3.20
+[36m(ClientAppActor pid=42912)[0m [site1] n=5038 train_loss=0.9434 sigma=2.64
+[36m(ClientAppActor pid=47060)[0m [site0] n=7691 train_loss=0.9765 sigma=2.17
+[92mINFO [0m:      aggregate_train: Received 5 results and 0 failures
+11/10/2026 18:29:49:INFO:aggregate_train: Received 5 results and 0 failures
+[92mINFO [0m:      	└──> Aggregated MetricRecord: {'train_loss': 0.9815277904183282}
+11/10/2026 18:29:49:INFO:	└──> Aggregated MetricRecord: {'train_loss': 0.9815277904183282}
+[92mINFO [0m:      Global evaluation
+11/10/2026 18:29:49:INFO:Global evaluation
+round 16: pooled fold-9 macro AUC 0.7956
+[92mINFO [0m:      	└──> MetricRecord: {'macro_auc': 0.7956438383453143}
+11/10/2026 18:29:50:INFO:	└──> MetricRecord: {'macro_auc': 0.7956438383453143}
+[92mINFO [0m:      
+11/10/2026 18:29:50:INFO:
+[92mINFO [0m:      [ROUND 17/30]
+11/10/2026 18:29:50:INFO:[ROUND 17/30]
+[92mINFO [0m:      configure_train: Sampled 5 nodes (out of 5)
+11/10/2026 18:29:50:INFO:configure_train: Sampled 5 nodes (out of 5)
+[36m(ClientAppActor pid=52980)[0m [site3] n=332 train_loss=0.9960 sigma=9.22
+[36m(ClientAppActor pid=38384)[0m [rest] n=705 train_loss=0.9430 sigma=6.56
+[36m(ClientAppActor pid=46476)[0m [site2] n=3318 train_loss=1.0442 sigma=3.20
+[36m(ClientAppActor pid=42912)[0m [site1] n=5038 train_loss=0.9553 sigma=2.64
+[36m(ClientAppActor pid=47060)[0m [site0] n=7691 train_loss=0.9708 sigma=2.17
+[92mINFO [0m:      aggregate_train: Received 5 results and 0 failures
+11/10/2026 18:30:19:INFO:aggregate_train: Received 5 results and 0 failures
+[92mINFO [0m:      	└──> Aggregated MetricRecord: {'train_loss': 0.9798347681408237}
+11/10/2026 18:30:19:INFO:	└──> Aggregated MetricRecord: {'train_loss': 0.9798347681408237}
+[92mINFO [0m:      Global evaluation
+11/10/2026 18:30:19:INFO:Global evaluation
+round 17: pooled fold-9 macro AUC 0.7966
+[92mINFO [0m:      	└──> MetricRecord: {'macro_auc': 0.7965887533954026}
+11/10/2026 18:30:20:INFO:	└──> MetricRecord: {'macro_auc': 0.7965887533954026}
+[92mINFO [0m:      
+11/10/2026 18:30:20:INFO:
+[92mINFO [0m:      [ROUND 18/30]
+11/10/2026 18:30:20:INFO:[ROUND 18/30]
+[92mINFO [0m:      configure_train: Sampled 5 nodes (out of 5)
+11/10/2026 18:30:20:INFO:configure_train: Sampled 5 nodes (out of 5)
+[36m(ClientAppActor pid=38384)[0m [site3] n=332 train_loss=0.9211 sigma=9.22
+[36m(ClientAppActor pid=52980)[0m [rest] n=705 train_loss=0.9352 sigma=6.56
+[36m(ClientAppActor pid=46476)[0m [site2] n=3318 train_loss=1.0658 sigma=3.20
+[36m(ClientAppActor pid=42912)[0m [site1] n=5038 train_loss=0.9432 sigma=2.64
+[92mINFO [0m:      aggregate_train: Received 5 results and 0 failures
+11/10/2026 18:30:50:INFO:aggregate_train: Received 5 results and 0 failures
+[92mINFO [0m:      	└──> Aggregated MetricRecord: {'train_loss': 0.9913784679412686}
+11/10/2026 18:30:50:INFO:	└──> Aggregated MetricRecord: {'train_loss': 0.9913784679412686}
+[92mINFO [0m:      Global evaluation
+11/10/2026 18:30:50:INFO:Global evaluation
+[36m(ClientAppActor pid=47060)[0m [site0] n=7691 train_loss=0.9990 sigma=2.17
+round 18: pooled fold-9 macro AUC 0.7979
+[92mINFO [0m:      	└──> MetricRecord: {'macro_auc': 0.7979070646111426}
+11/10/2026 18:30:50:INFO:	└──> MetricRecord: {'macro_auc': 0.7979070646111426}
+[92mINFO [0m:      
+11/10/2026 18:30:50:INFO:
+[92mINFO [0m:      [ROUND 19/30]
+11/10/2026 18:30:50:INFO:[ROUND 19/30]
+[92mINFO [0m:      configure_train: Sampled 5 nodes (out of 5)
+11/10/2026 18:30:50:INFO:configure_train: Sampled 5 nodes (out of 5)
+[36m(ClientAppActor pid=52980)[0m [site3] n=332 train_loss=0.9649 sigma=9.22
+[36m(ClientAppActor pid=38384)[0m [rest] n=705 train_loss=0.9578 sigma=6.56
+[36m(ClientAppActor pid=46476)[0m [site2] n=3318 train_loss=1.0979 sigma=3.20
+[36m(ClientAppActor pid=42912)[0m [site1] n=5038 train_loss=0.9173 sigma=2.64
+[92mINFO [0m:      aggregate_train: Received 5 results and 0 failures
+11/10/2026 18:31:20:INFO:aggregate_train: Received 5 results and 0 failures
+[92mINFO [0m:      	└──> Aggregated MetricRecord: {'train_loss': 0.9764263187863}
+11/10/2026 18:31:20:INFO:	└──> Aggregated MetricRecord: {'train_loss': 0.9764263187863}
+[92mINFO [0m:      Global evaluation
+11/10/2026 18:31:20:INFO:Global evaluation
+[36m(ClientAppActor pid=47060)[0m [site0] n=7691 train_loss=0.9649 sigma=2.17
+round 19: pooled fold-9 macro AUC 0.7998
+[92mINFO [0m:      	└──> MetricRecord: {'macro_auc': 0.7997644148111781}
+11/10/2026 18:31:21:INFO:	└──> MetricRecord: {'macro_auc': 0.7997644148111781}
+[92mINFO [0m:      
+11/10/2026 18:31:21:INFO:
+[92mINFO [0m:      [ROUND 20/30]
+11/10/2026 18:31:21:INFO:[ROUND 20/30]
+[92mINFO [0m:      configure_train: Sampled 5 nodes (out of 5)
+11/10/2026 18:31:21:INFO:configure_train: Sampled 5 nodes (out of 5)
+[36m(ClientAppActor pid=38384)[0m [site3] n=332 train_loss=1.0029 sigma=9.22
+[36m(ClientAppActor pid=52980)[0m [rest] n=705 train_loss=0.9435 sigma=6.56
+[36m(ClientAppActor pid=46476)[0m [site2] n=3318 train_loss=1.0539 sigma=3.20
+[36m(ClientAppActor pid=42912)[0m [site1] n=5038 train_loss=0.9249 sigma=2.64
+[36m(ClientAppActor pid=47060)[0m [site0] n=7691 train_loss=0.9532 sigma=2.17
+[92mINFO [0m:      aggregate_train: Received 5 results and 0 failures
+11/10/2026 18:31:50:INFO:aggregate_train: Received 5 results and 0 failures
+[92mINFO [0m:      	└──> Aggregated MetricRecord: {'train_loss': 0.9649720075378608}
+11/10/2026 18:31:50:INFO:	└──> Aggregated MetricRecord: {'train_loss': 0.9649720075378608}
+[92mINFO [0m:      Global evaluation
+11/10/2026 18:31:50:INFO:Global evaluation
+round 20: pooled fold-9 macro AUC 0.8007
+[92mINFO [0m:      	└──> MetricRecord: {'macro_auc': 0.8006622085736923}
+11/10/2026 18:31:51:INFO:	└──> MetricRecord: {'macro_auc': 0.8006622085736923}
+[92mINFO [0m:      
+11/10/2026 18:31:51:INFO:
+[92mINFO [0m:      [ROUND 21/30]
+11/10/2026 18:31:51:INFO:[ROUND 21/30]
+[92mINFO [0m:      configure_train: Sampled 5 nodes (out of 5)
+11/10/2026 18:31:51:INFO:configure_train: Sampled 5 nodes (out of 5)
+[36m(ClientAppActor pid=52980)[0m [site3] n=332 train_loss=0.9961 sigma=9.22
+[36m(ClientAppActor pid=38384)[0m [rest] n=705 train_loss=0.9049 sigma=6.56
+[36m(ClientAppActor pid=46476)[0m [site2] n=3318 train_loss=1.1301 sigma=3.20
+[36m(ClientAppActor pid=42912)[0m [site1] n=5038 train_loss=0.9007 sigma=2.64
+[36m(ClientAppActor pid=47060)[0m [site0] n=7691 train_loss=0.9778 sigma=2.17
+[92mINFO [0m:      aggregate_train: Received 5 results and 0 failures
+11/10/2026 18:32:21:INFO:aggregate_train: Received 5 results and 0 failures
+[92mINFO [0m:      	└──> Aggregated MetricRecord: {'train_loss': 0.9819893866901386}
+11/10/2026 18:32:21:INFO:	└──> Aggregated MetricRecord: {'train_loss': 0.9819893866901386}
+[92mINFO [0m:      Global evaluation
+11/10/2026 18:32:21:INFO:Global evaluation
+round 21: pooled fold-9 macro AUC 0.8018
+[92mINFO [0m:      	└──> MetricRecord: {'macro_auc': 0.801813364098057}
+11/10/2026 18:32:21:INFO:	└──> MetricRecord: {'macro_auc': 0.801813364098057}
+[92mINFO [0m:      
+11/10/2026 18:32:21:INFO:
+[92mINFO [0m:      [ROUND 22/30]
+11/10/2026 18:32:21:INFO:[ROUND 22/30]
+[92mINFO [0m:      configure_train: Sampled 5 nodes (out of 5)
+11/10/2026 18:32:21:INFO:configure_train: Sampled 5 nodes (out of 5)
+[36m(ClientAppActor pid=38384)[0m [site3] n=332 train_loss=0.8492 sigma=9.22
+[36m(ClientAppActor pid=52980)[0m [rest] n=705 train_loss=1.0017 sigma=6.56
+[36m(ClientAppActor pid=46476)[0m [site2] n=3318 train_loss=1.0383 sigma=3.20
+[36m(ClientAppActor pid=42912)[0m [site1] n=5038 train_loss=0.9282 sigma=2.64
+[36m(ClientAppActor pid=47060)[0m [site0] n=7691 train_loss=0.9662 sigma=2.17
+[92mINFO [0m:      aggregate_train: Received 5 results and 0 failures
+11/10/2026 18:32:51:INFO:aggregate_train: Received 5 results and 0 failures
+[92mINFO [0m:      	└──> Aggregated MetricRecord: {'train_loss': 0.968182206490881}
+11/10/2026 18:32:51:INFO:	└──> Aggregated MetricRecord: {'train_loss': 0.968182206490881}
+[92mINFO [0m:      Global evaluation
+11/10/2026 18:32:51:INFO:Global evaluation
+round 22: pooled fold-9 macro AUC 0.8025
+[92mINFO [0m:      	└──> MetricRecord: {'macro_auc': 0.8024850398635207}
+11/10/2026 18:32:51:INFO:	└──> MetricRecord: {'macro_auc': 0.8024850398635207}
+[92mINFO [0m:      
+11/10/2026 18:32:51:INFO:
+[92mINFO [0m:      [ROUND 23/30]
+11/10/2026 18:32:51:INFO:[ROUND 23/30]
+[92mINFO [0m:      configure_train: Sampled 5 nodes (out of 5)
+11/10/2026 18:32:51:INFO:configure_train: Sampled 5 nodes (out of 5)
+[36m(ClientAppActor pid=52980)[0m [site3] n=332 train_loss=0.8743 sigma=9.22
+[36m(ClientAppActor pid=38384)[0m [rest] n=705 train_loss=0.9709 sigma=6.56
+[36m(ClientAppActor pid=46476)[0m [site2] n=3318 train_loss=1.0457 sigma=3.20
+[36m(ClientAppActor pid=42912)[0m [site1] n=5038 train_loss=0.9253 sigma=2.64
+[36m(ClientAppActor pid=47060)[0m [site0] n=7691 train_loss=0.9713 sigma=2.17
+[92mINFO [0m:      aggregate_train: Received 5 results and 0 failures
+11/10/2026 18:33:21:INFO:aggregate_train: Received 5 results and 0 failures
+[92mINFO [0m:      	└──> Aggregated MetricRecord: {'train_loss': 0.9702499610215164}
+11/10/2026 18:33:21:INFO:	└──> Aggregated MetricRecord: {'train_loss': 0.9702499610215164}
+[92mINFO [0m:      Global evaluation
+11/10/2026 18:33:21:INFO:Global evaluation
+round 23: pooled fold-9 macro AUC 0.8033
+[92mINFO [0m:      	└──> MetricRecord: {'macro_auc': 0.8032951630409689}
+11/10/2026 18:33:21:INFO:	└──> MetricRecord: {'macro_auc': 0.8032951630409689}
+[92mINFO [0m:      
+11/10/2026 18:33:21:INFO:
+[92mINFO [0m:      [ROUND 24/30]
+11/10/2026 18:33:21:INFO:[ROUND 24/30]
+[92mINFO [0m:      configure_train: Sampled 5 nodes (out of 5)
+11/10/2026 18:33:21:INFO:configure_train: Sampled 5 nodes (out of 5)
+[36m(ClientAppActor pid=38384)[0m [site3] n=332 train_loss=0.9392 sigma=9.22
+[36m(ClientAppActor pid=52980)[0m [rest] n=705 train_loss=0.9225 sigma=6.56
+[36m(ClientAppActor pid=46476)[0m [site2] n=3318 train_loss=1.0753 sigma=3.20
+[36m(ClientAppActor pid=42912)[0m [site1] n=5038 train_loss=0.8986 sigma=2.64
+[36m(ClientAppActor pid=47060)[0m [site0] n=7691 train_loss=0.9693 sigma=2.17
+[92mINFO [0m:      aggregate_train: Received 5 results and 0 failures
+11/10/2026 18:33:51:INFO:aggregate_train: Received 5 results and 0 failures
+[92mINFO [0m:      	└──> Aggregated MetricRecord: {'train_loss': 0.9665120583037151}
+11/10/2026 18:33:51:INFO:	└──> Aggregated MetricRecord: {'train_loss': 0.9665120583037151}
+[92mINFO [0m:      Global evaluation
+11/10/2026 18:33:51:INFO:Global evaluation
+round 24: pooled fold-9 macro AUC 0.8047
+[92mINFO [0m:      	└──> MetricRecord: {'macro_auc': 0.8046714850693011}
+11/10/2026 18:33:52:INFO:	└──> MetricRecord: {'macro_auc': 0.8046714850693011}
+[92mINFO [0m:      
+11/10/2026 18:33:52:INFO:
+[92mINFO [0m:      [ROUND 25/30]
+11/10/2026 18:33:52:INFO:[ROUND 25/30]
+[92mINFO [0m:      configure_train: Sampled 5 nodes (out of 5)
+11/10/2026 18:33:52:INFO:configure_train: Sampled 5 nodes (out of 5)
+[36m(ClientAppActor pid=52980)[0m [site3] n=332 train_loss=0.8903 sigma=9.22
+[36m(ClientAppActor pid=38384)[0m [rest] n=705 train_loss=0.9720 sigma=6.56
+[36m(ClientAppActor pid=46476)[0m [site2] n=3318 train_loss=1.0407 sigma=3.20
+[36m(ClientAppActor pid=42912)[0m [site1] n=5038 train_loss=0.9089 sigma=2.64
+[36m(ClientAppActor pid=47060)[0m [site0] n=7691 train_loss=0.9446 sigma=2.17
+[92mINFO [0m:      aggregate_train: Received 5 results and 0 failures
+11/10/2026 18:34:22:INFO:aggregate_train: Received 5 results and 0 failures
+[92mINFO [0m:      	└──> Aggregated MetricRecord: {'train_loss': 0.9528057513302415}
+11/10/2026 18:34:22:INFO:	└──> Aggregated MetricRecord: {'train_loss': 0.9528057513302415}
+[92mINFO [0m:      Global evaluation
+11/10/2026 18:34:22:INFO:Global evaluation
+round 25: pooled fold-9 macro AUC 0.8066
+[92mINFO [0m:      	└──> MetricRecord: {'macro_auc': 0.8066181546327822}
+11/10/2026 18:34:23:INFO:	└──> MetricRecord: {'macro_auc': 0.8066181546327822}
+[92mINFO [0m:      
+11/10/2026 18:34:23:INFO:
+[92mINFO [0m:      [ROUND 26/30]
+11/10/2026 18:34:23:INFO:[ROUND 26/30]
+[92mINFO [0m:      configure_train: Sampled 5 nodes (out of 5)
+11/10/2026 18:34:23:INFO:configure_train: Sampled 5 nodes (out of 5)
+[36m(ClientAppActor pid=38384)[0m [site3] n=332 train_loss=0.9852 sigma=9.22
+[36m(ClientAppActor pid=52980)[0m [rest] n=705 train_loss=0.9591 sigma=6.56
+[36m(ClientAppActor pid=46476)[0m [site2] n=3318 train_loss=1.0662 sigma=3.20
+[36m(ClientAppActor pid=42912)[0m [site1] n=5038 train_loss=0.9229 sigma=2.64
+[36m(ClientAppActor pid=47060)[0m [site0] n=7691 train_loss=0.9221 sigma=2.17
+[92mINFO [0m:      aggregate_train: Received 5 results and 0 failures
+11/10/2026 18:34:53:INFO:aggregate_train: Received 5 results and 0 failures
+[92mINFO [0m:      	└──> Aggregated MetricRecord: {'train_loss': 0.9530604076231004}
+11/10/2026 18:34:53:INFO:	└──> Aggregated MetricRecord: {'train_loss': 0.9530604076231004}
+[92mINFO [0m:      Global evaluation
+11/10/2026 18:34:53:INFO:Global evaluation
+round 26: pooled fold-9 macro AUC 0.8088
+[92mINFO [0m:      	└──> MetricRecord: {'macro_auc': 0.8087589750051503}
+11/10/2026 18:34:53:INFO:	└──> MetricRecord: {'macro_auc': 0.8087589750051503}
+[92mINFO [0m:      
+11/10/2026 18:34:53:INFO:
+[92mINFO [0m:      [ROUND 27/30]
+11/10/2026 18:34:53:INFO:[ROUND 27/30]
+[92mINFO [0m:      configure_train: Sampled 5 nodes (out of 5)
+11/10/2026 18:34:53:INFO:configure_train: Sampled 5 nodes (out of 5)
+[36m(ClientAppActor pid=52980)[0m [site3] n=332 train_loss=0.8948 sigma=9.22
+[36m(ClientAppActor pid=38384)[0m [rest] n=705 train_loss=0.9790 sigma=6.56
+[36m(ClientAppActor pid=46476)[0m [site2] n=3318 train_loss=1.0758 sigma=3.20
+[36m(ClientAppActor pid=42912)[0m [site1] n=5038 train_loss=0.9008 sigma=2.64
+[36m(ClientAppActor pid=47060)[0m [site0] n=7691 train_loss=0.9601 sigma=2.17
+[92mINFO [0m:      aggregate_train: Received 5 results and 0 failures
+11/10/2026 18:35:24:INFO:aggregate_train: Received 5 results and 0 failures
+[92mINFO [0m:      	└──> Aggregated MetricRecord: {'train_loss': 0.9645998515598355}
+11/10/2026 18:35:24:INFO:	└──> Aggregated MetricRecord: {'train_loss': 0.9645998515598355}
+[92mINFO [0m:      Global evaluation
+11/10/2026 18:35:24:INFO:Global evaluation
+round 27: pooled fold-9 macro AUC 0.8089
+[92mINFO [0m:      	└──> MetricRecord: {'macro_auc': 0.8088966176000005}
+11/10/2026 18:35:24:INFO:	└──> MetricRecord: {'macro_auc': 0.8088966176000005}
+[92mINFO [0m:      
+11/10/2026 18:35:24:INFO:
+[92mINFO [0m:      [ROUND 28/30]
+11/10/2026 18:35:24:INFO:[ROUND 28/30]
+[92mINFO [0m:      configure_train: Sampled 5 nodes (out of 5)
+11/10/2026 18:35:24:INFO:configure_train: Sampled 5 nodes (out of 5)
+[36m(ClientAppActor pid=38384)[0m [site3] n=332 train_loss=1.0635 sigma=9.22
+[36m(ClientAppActor pid=52980)[0m [rest] n=705 train_loss=1.0306 sigma=6.56
+[36m(ClientAppActor pid=46476)[0m [site2] n=3318 train_loss=0.9866 sigma=3.20
+[36m(ClientAppActor pid=42912)[0m [site1] n=5038 train_loss=0.9095 sigma=2.64
+[92mINFO [0m:      aggregate_train: Received 5 results and 0 failures
+11/10/2026 18:35:54:INFO:aggregate_train: Received 5 results and 0 failures
+[36m(ClientAppActor pid=47060)[0m [site0] n=7691 train_loss=0.9606 sigma=2.17
+[92mINFO [0m:      	└──> Aggregated MetricRecord: {'train_loss': 0.9554843123080599}
+11/10/2026 18:35:54:INFO:	└──> Aggregated MetricRecord: {'train_loss': 0.9554843123080599}
+[92mINFO [0m:      Global evaluation
+11/10/2026 18:35:54:INFO:Global evaluation
+round 28: pooled fold-9 macro AUC 0.8114
+[92mINFO [0m:      	└──> MetricRecord: {'macro_auc': 0.8113559068974189}
+11/10/2026 18:35:55:INFO:	└──> MetricRecord: {'macro_auc': 0.8113559068974189}
+[92mINFO [0m:      
+11/10/2026 18:35:55:INFO:
+[92mINFO [0m:      [ROUND 29/30]
+11/10/2026 18:35:55:INFO:[ROUND 29/30]
+[92mINFO [0m:      configure_train: Sampled 5 nodes (out of 5)
+11/10/2026 18:35:55:INFO:configure_train: Sampled 5 nodes (out of 5)
+[36m(ClientAppActor pid=52980)[0m [site3] n=332 train_loss=0.7693 sigma=9.22
+[36m(ClientAppActor pid=38384)[0m [rest] n=705 train_loss=0.9880 sigma=6.56
+[36m(ClientAppActor pid=46476)[0m [site2] n=3318 train_loss=1.0339 sigma=3.20
+[36m(ClientAppActor pid=42912)[0m [site1] n=5038 train_loss=0.9088 sigma=2.64
+[36m(ClientAppActor pid=47060)[0m [site0] n=7691 train_loss=0.9270 sigma=2.17
+[92mINFO [0m:      aggregate_train: Received 5 results and 0 failures
+11/10/2026 18:36:25:INFO:aggregate_train: Received 5 results and 0 failures
+[92mINFO [0m:      	└──> Aggregated MetricRecord: {'train_loss': 0.9418198108785452}
+11/10/2026 18:36:25:INFO:	└──> Aggregated MetricRecord: {'train_loss': 0.9418198108785452}
+[92mINFO [0m:      Global evaluation
+11/10/2026 18:36:25:INFO:Global evaluation
+round 29: pooled fold-9 macro AUC 0.8113
+[92mINFO [0m:      	└──> MetricRecord: {'macro_auc': 0.8112650211416618}
+11/10/2026 18:36:27:INFO:	└──> MetricRecord: {'macro_auc': 0.8112650211416618}
+[92mINFO [0m:      
+11/10/2026 18:36:27:INFO:
+[92mINFO [0m:      [ROUND 30/30]
+11/10/2026 18:36:27:INFO:[ROUND 30/30]
+[92mINFO [0m:      configure_train: Sampled 5 nodes (out of 5)
+11/10/2026 18:36:27:INFO:configure_train: Sampled 5 nodes (out of 5)
+[36m(ClientAppActor pid=38384)[0m [site3] n=332 train_loss=0.9772 sigma=9.22
+[36m(ClientAppActor pid=52980)[0m [rest] n=705 train_loss=0.9478 sigma=6.56
+[36m(ClientAppActor pid=46476)[0m [site2] n=3318 train_loss=1.0453 sigma=3.20
+[36m(ClientAppActor pid=42912)[0m [site1] n=5038 train_loss=0.9334 sigma=2.64
+[36m(ClientAppActor pid=47060)[0m [site0] n=7691 train_loss=0.9247 sigma=2.17
+[92mINFO [0m:      aggregate_train: Received 5 results and 0 failures
+11/10/2026 18:36:57:INFO:aggregate_train: Received 5 results and 0 failures
+[92mINFO [0m:      	└──> Aggregated MetricRecord: {'train_loss': 0.9526847300259476}
+11/10/2026 18:36:57:INFO:	└──> Aggregated MetricRecord: {'train_loss': 0.9526847300259476}
+[92mINFO [0m:      Global evaluation
+11/10/2026 18:36:57:INFO:Global evaluation
+round 30: pooled fold-9 macro AUC 0.8154
+[92mINFO [0m:      	└──> MetricRecord: {'macro_auc': 0.8154201252883405}
+11/10/2026 18:36:57:INFO:	└──> MetricRecord: {'macro_auc': 0.8154201252883405}
+[92mINFO [0m:      
+11/10/2026 18:36:57:INFO:
+[92mINFO [0m:      Strategy execution finished in 997.45s
+11/10/2026 18:36:57:INFO:Strategy execution finished in 997.45s
+[92mINFO [0m:      
+11/10/2026 18:36:57:INFO:
+[92mINFO [0m:      Final results:
+11/10/2026 18:36:57:INFO:Final results:
+[92mINFO [0m:      
+11/10/2026 18:36:57:INFO:
+[92mINFO [0m:      	Global Arrays:
+11/10/2026 18:36:57:INFO:	Global Arrays:
+[92mINFO [0m:      		ArrayRecord (0.666 MB)
+11/10/2026 18:36:57:INFO:		ArrayRecord (0.666 MB)
+[92mINFO [0m:      	
+11/10/2026 18:36:57:INFO:	
+[92mINFO [0m:      	Aggregated ClientApp-side Train Metrics:
+11/10/2026 18:36:57:INFO:	Aggregated ClientApp-side Train Metrics:
+[92mINFO [0m:      	{ 1: {'train_loss': '1.1891e+00'},
+11/10/2026 18:36:57:INFO:	{ 1: {'train_loss': '1.1891e+00'},
+[92mINFO [0m:      	  2: {'train_loss': '1.4277e+00'},
+11/10/2026 18:36:57:INFO:	  2: {'train_loss': '1.4277e+00'},
+[92mINFO [0m:      	  3: {'train_loss': '1.4606e+00'},
+11/10/2026 18:36:57:INFO:	  3: {'train_loss': '1.4606e+00'},
+[92mINFO [0m:      	  4: {'train_loss': '1.3808e+00'},
+11/10/2026 18:36:57:INFO:	  4: {'train_loss': '1.3808e+00'},
+[92mINFO [0m:      	  5: {'train_loss': '1.2728e+00'},
+11/10/2026 18:36:57:INFO:	  5: {'train_loss': '1.2728e+00'},
+[92mINFO [0m:      	  6: {'train_loss': '1.1001e+00'},
+11/10/2026 18:36:57:INFO:	  6: {'train_loss': '1.1001e+00'},
+[92mINFO [0m:      	  7: {'train_loss': '1.0141e+00'},
+11/10/2026 18:36:57:INFO:	  7: {'train_loss': '1.0141e+00'},
+[92mINFO [0m:      	  8: {'train_loss': '9.8304e-01'},
+11/10/2026 18:36:57:INFO:	  8: {'train_loss': '9.8304e-01'},
+[92mINFO [0m:      	  9: {'train_loss': '9.9262e-01'},
+11/10/2026 18:36:57:INFO:	  9: {'train_loss': '9.9262e-01'},
+[92mINFO [0m:      	  10: {'train_loss': '9.9445e-01'},
+11/10/2026 18:36:57:INFO:	  10: {'train_loss': '9.9445e-01'},
+[92mINFO [0m:      	  11: {'train_loss': '9.7039e-01'},
+11/10/2026 18:36:57:INFO:	  11: {'train_loss': '9.7039e-01'},
+[92mINFO [0m:      	  12: {'train_loss': '9.6836e-01'},
+11/10/2026 18:36:57:INFO:	  12: {'train_loss': '9.6836e-01'},
+[92mINFO [0m:      	  13: {'train_loss': '9.8816e-01'},
+11/10/2026 18:36:57:INFO:	  13: {'train_loss': '9.8816e-01'},
+[92mINFO [0m:      	  14: {'train_loss': '9.7856e-01'},
+11/10/2026 18:36:57:INFO:	  14: {'train_loss': '9.7856e-01'},
+[92mINFO [0m:      	  15: {'train_loss': '9.8379e-01'},
+11/10/2026 18:36:57:INFO:	  15: {'train_loss': '9.8379e-01'},
+[92mINFO [0m:      	  16: {'train_loss': '9.8153e-01'},
+11/10/2026 18:36:57:INFO:	  16: {'train_loss': '9.8153e-01'},
+[92mINFO [0m:      	  17: {'train_loss': '9.7983e-01'},
+11/10/2026 18:36:57:INFO:	  17: {'train_loss': '9.7983e-01'},
+[92mINFO [0m:      	  18: {'train_loss': '9.9138e-01'},
+11/10/2026 18:36:57:INFO:	  18: {'train_loss': '9.9138e-01'},
+[92mINFO [0m:      	  19: {'train_loss': '9.7643e-01'},
+11/10/2026 18:36:57:INFO:	  19: {'train_loss': '9.7643e-01'},
+[92mINFO [0m:      	  20: {'train_loss': '9.6497e-01'},
+11/10/2026 18:36:57:INFO:	  20: {'train_loss': '9.6497e-01'},
+[92mINFO [0m:      	  21: {'train_loss': '9.8199e-01'},
+11/10/2026 18:36:57:INFO:	  21: {'train_loss': '9.8199e-01'},
+[92mINFO [0m:      	  22: {'train_loss': '9.6818e-01'},
+11/10/2026 18:36:57:INFO:	  22: {'train_loss': '9.6818e-01'},
+[92mINFO [0m:      	  23: {'train_loss': '9.7025e-01'},
+11/10/2026 18:36:57:INFO:	  23: {'train_loss': '9.7025e-01'},
+[92mINFO [0m:      	  24: {'train_loss': '9.6651e-01'},
+11/10/2026 18:36:57:INFO:	  24: {'train_loss': '9.6651e-01'},
+[92mINFO [0m:      	  25: {'train_loss': '9.5281e-01'},
+11/10/2026 18:36:57:INFO:	  25: {'train_loss': '9.5281e-01'},
+[92mINFO [0m:      	  26: {'train_loss': '9.5306e-01'},
+11/10/2026 18:36:57:INFO:	  26: {'train_loss': '9.5306e-01'},
+[92mINFO [0m:      	  27: {'train_loss': '9.6460e-01'},
+11/10/2026 18:36:57:INFO:	  27: {'train_loss': '9.6460e-01'},
+[92mINFO [0m:      	  28: {'train_loss': '9.5548e-01'},
+11/10/2026 18:36:57:INFO:	  28: {'train_loss': '9.5548e-01'},
+[92mINFO [0m:      	  29: {'train_loss': '9.4182e-01'},
+11/10/2026 18:36:57:INFO:	  29: {'train_loss': '9.4182e-01'},
+[92mINFO [0m:      	  30: {'train_loss': '9.5268e-01'}}
+11/10/2026 18:36:57:INFO:	  30: {'train_loss': '9.5268e-01'}}
+[92mINFO [0m:      	
+11/10/2026 18:36:57:INFO:	
+[92mINFO [0m:      	Aggregated ClientApp-side Evaluate Metrics:
+11/10/2026 18:36:57:INFO:	Aggregated ClientApp-side Evaluate Metrics:
+[92mINFO [0m:      	{}
+11/10/2026 18:36:57:INFO:	{}
+[92mINFO [0m:      	
+11/10/2026 18:36:57:INFO:	
+[92mINFO [0m:      	ServerApp-side Evaluate Metrics:
+11/10/2026 18:36:57:INFO:	ServerApp-side Evaluate Metrics:
+[92mINFO [0m:      	{ 0: {'macro_auc': '4.6993e-01'},
+11/10/2026 18:36:57:INFO:	{ 0: {'macro_auc': '4.6993e-01'},
+[92mINFO [0m:      	  1: {'macro_auc': '7.0862e-01'},
+11/10/2026 18:36:57:INFO:	  1: {'macro_auc': '7.0862e-01'},
+[92mINFO [0m:      	  2: {'macro_auc': '7.4412e-01'},
+11/10/2026 18:36:57:INFO:	  2: {'macro_auc': '7.4412e-01'},
+[92mINFO [0m:      	  3: {'macro_auc': '7.5513e-01'},
+11/10/2026 18:36:57:INFO:	  3: {'macro_auc': '7.5513e-01'},
+[92mINFO [0m:      	  4: {'macro_auc': '7.6179e-01'},
+11/10/2026 18:36:57:INFO:	  4: {'macro_auc': '7.6179e-01'},
+[92mINFO [0m:      	  5: {'macro_auc': '7.6749e-01'},
+11/10/2026 18:36:57:INFO:	  5: {'macro_auc': '7.6749e-01'},
+[92mINFO [0m:      	  6: {'macro_auc': '7.7102e-01'},
+11/10/2026 18:36:57:INFO:	  6: {'macro_auc': '7.7102e-01'},
+[92mINFO [0m:      	  7: {'macro_auc': '7.7295e-01'},
+11/10/2026 18:36:57:INFO:	  7: {'macro_auc': '7.7295e-01'},
+[92mINFO [0m:      	  8: {'macro_auc': '7.7668e-01'},
+11/10/2026 18:36:57:INFO:	  8: {'macro_auc': '7.7668e-01'},
+[92mINFO [0m:      	  9: {'macro_auc': '7.7975e-01'},
+11/10/2026 18:36:57:INFO:	  9: {'macro_auc': '7.7975e-01'},
+[92mINFO [0m:      	  10: {'macro_auc': '7.8392e-01'},
+11/10/2026 18:36:57:INFO:	  10: {'macro_auc': '7.8392e-01'},
+[92mINFO [0m:      	  11: {'macro_auc': '7.8667e-01'},
+11/10/2026 18:36:57:INFO:	  11: {'macro_auc': '7.8667e-01'},
+[92mINFO [0m:      	  12: {'macro_auc': '7.8826e-01'},
+11/10/2026 18:36:57:INFO:	  12: {'macro_auc': '7.8826e-01'},
+[92mINFO [0m:      	  13: {'macro_auc': '7.9013e-01'},
+11/10/2026 18:36:57:INFO:	  13: {'macro_auc': '7.9013e-01'},
+[92mINFO [0m:      	  14: {'macro_auc': '7.9199e-01'},
+11/10/2026 18:36:57:INFO:	  14: {'macro_auc': '7.9199e-01'},
+[92mINFO [0m:      	  15: {'macro_auc': '7.9339e-01'},
+11/10/2026 18:36:57:INFO:	  15: {'macro_auc': '7.9339e-01'},
+[92mINFO [0m:      	  16: {'macro_auc': '7.9564e-01'},
+11/10/2026 18:36:57:INFO:	  16: {'macro_auc': '7.9564e-01'},
+[92mINFO [0m:      	  17: {'macro_auc': '7.9659e-01'},
+11/10/2026 18:36:57:INFO:	  17: {'macro_auc': '7.9659e-01'},
+[92mINFO [0m:      	  18: {'macro_auc': '7.9791e-01'},
+11/10/2026 18:36:57:INFO:	  18: {'macro_auc': '7.9791e-01'},
+[92mINFO [0m:      	  19: {'macro_auc': '7.9976e-01'},
+11/10/2026 18:36:57:INFO:	  19: {'macro_auc': '7.9976e-01'},
+[92mINFO [0m:      	  20: {'macro_auc': '8.0066e-01'},
+11/10/2026 18:36:57:INFO:	  20: {'macro_auc': '8.0066e-01'},
+[92mINFO [0m:      	  21: {'macro_auc': '8.0181e-01'},
+11/10/2026 18:36:57:INFO:	  21: {'macro_auc': '8.0181e-01'},
+[92mINFO [0m:      	  22: {'macro_auc': '8.0249e-01'},
+11/10/2026 18:36:57:INFO:	  22: {'macro_auc': '8.0249e-01'},
+[92mINFO [0m:      	  23: {'macro_auc': '8.0330e-01'},
+11/10/2026 18:36:57:INFO:	  23: {'macro_auc': '8.0330e-01'},
+[92mINFO [0m:      	  24: {'macro_auc': '8.0467e-01'},
+11/10/2026 18:36:57:INFO:	  24: {'macro_auc': '8.0467e-01'},
+[92mINFO [0m:      	  25: {'macro_auc': '8.0662e-01'},
+11/10/2026 18:36:57:INFO:	  25: {'macro_auc': '8.0662e-01'},
+[92mINFO [0m:      	  26: {'macro_auc': '8.0876e-01'},
+11/10/2026 18:36:57:INFO:	  26: {'macro_auc': '8.0876e-01'},
+[92mINFO [0m:      	  27: {'macro_auc': '8.0890e-01'},
+11/10/2026 18:36:57:INFO:	  27: {'macro_auc': '8.0890e-01'},
+[92mINFO [0m:      	  28: {'macro_auc': '8.1136e-01'},
+11/10/2026 18:36:57:INFO:	  28: {'macro_auc': '8.1136e-01'},
+[92mINFO [0m:      	  29: {'macro_auc': '8.1127e-01'},
+11/10/2026 18:36:57:INFO:	  29: {'macro_auc': '8.1127e-01'},
+[92mINFO [0m:      	  30: {'macro_auc': '8.1542e-01'}}
+11/10/2026 18:36:57:INFO:	  30: {'macro_auc': '8.1542e-01'}}
+[92mINFO [0m:      
+11/10/2026 18:36:57:INFO:
+11/10/2026 18:36:57:DEBUG:ServerApp finished running.
+11/10/2026 18:36:57:DEBUG:ServerApp finished running.
+11/10/2026 18:36:57:DEBUG:Triggered stop event for Simulation Runtime.
+11/10/2026 18:36:58:DEBUG:Terminated 8 actors
+[36m(ClientAppActor pid=42912)[0m [93mWARNING [0m:   Manually terminating ClientAppActor
+[36m(ClientAppActor pid=42912)[0m 11/10/2026 18:36:58:WARNING:Manually terminating ClientAppActor
+[36m(ClientAppActor pid=47060)[0m C:\Users\nmunn\anaconda3\envs\privfedxai\Lib\site-packages\opacus\privacy_engine.py:98: UserWarning: Secure RNG turned off. This is perfectly fine for experimentation as it allows for much faster training performance, but remember to turn it on and retrain one last time before production with ``secure_mode`` turned on.
+[36m(ClientAppActor pid=47060)[0m   warnings.warn(
+[36m(ClientAppActor pid=47060)[0m C:\Projects\privfedxai\src\models\train.py:27: UserWarning: Full backward hook is firing when gradients are computed with respect to module outputs since no inputs require gradients. See https://docs.pytorch.org/docs/main/generated/torch.nn.Module.html#torch.nn.Module.register_full_backward_hook for more details.
+[36m(ClientAppActor pid=47060)[0m   opt.zero_grad(); loss.backward(); opt.step()
+[36m(ClientAppActor pid=47060)[0m [93mWARNING [0m:   Manually terminating ClientAppActor
+[36m(ClientAppActor pid=47060)[0m 11/10/2026 18:36:58:WARNING:Manually terminating ClientAppActor
+11/10/2026 18:36:59:DEBUG:Terminated RayBackend
+11/10/2026 18:36:59:DEBUG:Stopping Simulation Runtime now.
+[92mINFO [0m:      
+11/10/2026 18:36:59:INFO:
+11/10/2026 18:37:03:DEBUG:Cleaned up runtime environment C:\Users\nmunn\.flwr\runtime-envs\15469285155897074731
+11/10/2026 18:37:03:DEBUG:[flwr-simulation] Will push Simulation task output
