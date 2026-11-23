@@ -257,7 +257,6 @@ A five-panel demonstration (data input, prediction, attention heatmap, privacy-b
 progress. The privacy slider will switch between precomputed results at epsilon 10, 5, 1 and no DP; it will not
 train anything live.
 
-## License
 
 ## License
 
