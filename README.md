@@ -9,7 +9,7 @@ limit what the model can reveal about individuals (differential privacy), and sh
 model looked (attention heatmaps and SHAP), then measure what each step costs in accuracy. The framework
 is written generically; ECG classification is the validation case.
 
-## Status (November 23, 2026)
+## Status (November 25, 2026)
 
 | Phase | State |
 | --- | --- |
@@ -20,10 +20,10 @@ is written generically; ECG classification is the validation case.
 | Fold-10 evaluation (all models scored once, no retuning) | Done |
 | Attention-to-ECG alignment (IoU) | Done (fold 9) |
 | SHAP lead importance | Done (one chart, fold 9) |
-| Streamlit app | In progress, not in this repository yet |
+| Streamlit app (five panels, runs locally) | Done |
 | Final report | Draft |
 
-Final deliverables are due December 1, 2026. Unit tests: 20, all passing (`python -m pytest tests`).
+Final deliverables are due December 1, 2026. Unit tests: 23, all passing (`python -m pytest tests`).
 
 ## What has been built
 
@@ -160,9 +160,10 @@ reference regions use PTB-XL+ fiducial points; see `src/data/extract_ptbxl_plus.
 
 - Included: all code, tests, result tables and figures, run logs, and SHA-256 manifests.
 - Not included: raw data, the waveform cache, model weights (`*.pt`), and probability and SHAP arrays
-  (`results/**/*.npz`). They are git-ignored.
-- Because of this, the fold-10 scoring and SHAP scripts cannot run from a fresh clone. They load the frozen
-  weights and refuse to run if a file's SHA-256 does not match. Weight hashes are in
+  (`results/**/*.npz`). They are git-ignored. The app's demo-record bundle (`app/demo_records.npz`, 99 PTB-XL
+  fold-9 records) is not included either; `python -m app.make_demo_bundle` rebuilds it.
+- Because of this, the fold-10 scoring and SHAP scripts and the Streamlit app cannot run from a fresh clone.
+  They load the frozen weights and refuse to run if a file's SHA-256 does not match. Weight hashes are in
   `src/eval/frozen_models.py`; the DP weights' hashes are in `results/fl/DP_MANIFEST.sha256.txt` and the fold-10
   probability hashes in `results/fold10/FOLD10_PROBS.sha256.txt`. To reproduce, retrain; results will differ
   slightly, so compare with the tables above rather than expecting identical hashes.
@@ -213,10 +214,17 @@ python -m src.eval.shap_table --build      # lead-importance CSV and chart
 python -m src.eval.shap_amplitude          # exploratory amplitude check
 ```
 
+Streamlit app (needs the frozen weights and `data/processed/`; see the Streamlit app section below):
+```bash
+python -m app.make_demo_bundle             # once: 99 fold-9 demo records -> app/demo_records.npz
+python -m streamlit run app/streamlit_app.py
+```
+
 Tests:
 ```bash
 python -m pytest tests
 ```
+`tests/test_app_backend.py` needs the frozen weights and the demo bundle, so it fails on a fresh clone.
 
 Commit messages and some code comments cite decision IDs (for example D67). These refer to the author's private
 decision log and are not needed to use the code.
@@ -230,6 +238,7 @@ src/federated/   local training, per-client and DP fairness tables
 src/eval/        metrics, bootstrap intervals, frozen-model loader, fold-10 scoring, SHAP
 src/explain/     attention heatmaps and IoU alignment
 fl_app/          Flower app (client, server) and the DP sweep runner
+app/             Streamlit demo (backend, interface, demo-record bundle script)
 tests/           unit tests
 sanity/          throwaway library checks
 notebooks/       EDA
@@ -248,14 +257,40 @@ results/         tables and figures (large arrays and model weights are git-igno
 - The IoU reference regions are our own design choice and have not been reviewed by a clinician; the SHAP chart
   mostly reflects signal amplitude.
 - The attention map is over time only; the model supports no per-lead attention claim.
+- The app offers only 99 PTB-XL fold-9 records; uploading other files is not offered. When 500 Hz PTB-XL
+  records were resampled to 100 Hz, their correlation with the distributed 100 Hz files (the ones the models
+  were trained on) was 0.94 at worst (mean 0.987), but the attention model's scores differed by up to 0.285 on
+  20 records, against a pre-set limit of 0.05. The cause was not investigated.
+- Model scores are not calibrated probabilities (no calibration was fitted). On fold 9 the mean score is above
+  the prevalence for every class and model; the largest gap is the federated model for HYP (mean score 0.287,
+  prevalence 0.125).
 - This is research code for a capstone project. It is not a medical device and must not be used for clinical
   decisions.
 
 ## Streamlit app
 
-A five-panel demonstration (data input, prediction, attention heatmap, privacy-budget slider, SHAP chart) is in
-progress. The privacy slider will switch between precomputed results at epsilon 10, 5, 1 and no DP; it will not
-train anything live.
+A five-panel demonstration of the frozen models. It runs locally and needs the frozen weights and
+`data/processed/`, so it cannot run from a fresh clone (see "What is and is not in this repository").
+
+```bash
+python -m app.make_demo_bundle             # once: 99 fold-9 demo records -> app/demo_records.npz
+python -m streamlit run app/streamlit_app.py
+```
+
+Run both commands from the repository root.
+
+1. **Data input:** pick one of 99 fold-9 demo records (20 true positives per class, the same records as the
+   SHAP chart, drawn from labels only). The 12 leads are shown as the models see them.
+2. **Prediction:** model scores and flagged classes (threshold 0.5) from the CNN, the attention model and the
+   federated model.
+3. **Attention heatmap:** the attention model's per-class attention over time, one time axis for all leads.
+   It is a description of the model, not validated as clinical localization (see the IoU section).
+4. **Privacy budget:** a slider over epsilon 1, 5, 10 and no DP. It shows the frozen fold-10 metrics and the
+   selected record's scores from all three runs at that epsilon. Inference only; nothing is trained live.
+5. **SHAP:** the precomputed lead-importance chart; it does not depend on the selected record.
+
+No fold-10 record or label appears in the app; fold 10 enters only as the aggregate metrics in panel 4. The
+logic is in `app/backend.py` (no Streamlit imports) and is tested in `tests/test_app_backend.py`.
 
 
 ## License
